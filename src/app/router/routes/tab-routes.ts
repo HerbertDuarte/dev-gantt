@@ -1,0 +1,43 @@
+import { UsuarioNivel } from '../../../entities/usuario';
+import { Route } from '../config/route.interface';
+
+interface Tab extends Route {
+    title: string;
+}
+
+export const tabRoutes: Route[] = [
+    {
+        path: '/',
+        component: () => import('../../pages/home/HomePage.vue'),
+
+        name: 'home',
+        meta: {
+            authGuard: true,
+            breadcrumb: [
+                {
+                    path: '/',
+                    title: 'Início',
+                },
+            ],
+            icon: 'home',
+            label: 'Tela inicial',
+        },
+    },
+    {
+        path: '/usuario',
+        component: () =>
+            import('../../pages/usuarios/components/UsuariosPage.vue'),
+        meta: {
+            roles: [UsuarioNivel.Administrador],
+            breadcrumb: [
+                {
+                    path: '/usuario',
+                    title: 'Usuários',
+                },
+            ],
+            label: 'Lista de usuários',
+            icon: 'person',
+        },
+        name: 'usuario',
+    },
+];

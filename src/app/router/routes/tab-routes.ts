@@ -40,4 +40,20 @@ export const tabRoutes: Route[] = [
         },
         name: 'usuario',
     },
+    {
+        path: '/gantt',
+        component: () => import('../../pages/gantt/Gantt.vue'),
+        meta: {
+            roles: [UsuarioNivel.Administrador],
+            breadcrumb: [
+                {
+                    path: '/gantt',
+                    title: 'Gantt',
+                },
+            ],
+            label: 'Gráfico de Gantt',
+            icon: 'graphic_eq',
+        },
+        name: 'gantt',
+    },
 ];

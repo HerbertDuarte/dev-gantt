@@ -1,7 +1,8 @@
 <template>
-    <q-layout view="hHh Lpr lff" class="bg-slate-50">
-        <q-page-container>
-            <q-toolbar class="flex justify-between bg-slate-50 py-3">
+    <q-layout class="bg-slate-50" view="lHh LpR fFf">
+
+        <q-header class="bg-slate-50">
+            <q-toolbar class="flex justify-between">
                 <div class="flex items-center text-slate-600 ">
                     <q-btn flat dense round icon="menu" aria-label="Menu" @click="sideBarStore.handleClick()" />
 
@@ -11,8 +12,7 @@
                     <menu-options />
                 </div>
             </q-toolbar>
-            <LeftSideBar />
-            <div class="flex items-center text-2xl pt-3 px-10 text-slate-600">
+            <div class="flex items-center text-2xl pb-1.5 pt-3 px-10 text-slate-600">
                 <q-icon class="cursor-pointer" @click="() => router.push('/')" name="home" />
                 <div class="flex items-center" v-for="breadcrumb in route.meta?.breadcrumb">
                     <q-icon class="font-bold" name="chevron_right" />
@@ -20,12 +20,18 @@
                         {{ breadcrumb.title }}
                     </p>
                 </div>
-
             </div>
+        </q-header>
+
+        <LeftSideBar />
+
+        <q-page-container>
+
             <main class="pt-6 pb-10 px-10">
-                <slot />
+                <router-view />
             </main>
         </q-page-container>
+
     </q-layout>
 </template>
 

@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 export default {
     content: ['./src/**/*.vue', './index.html'],
+
     theme: {
         extend: {
             height: {
@@ -14,4 +15,5 @@ export default {
             },
         },
     },
+    safelist: ['bg-red-500', 'bg-green-500', 'bg-blue-500', '*'],
 };

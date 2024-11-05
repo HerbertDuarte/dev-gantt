@@ -42,7 +42,7 @@ export const tabRoutes: Route[] = [
     },
     {
         path: '/gantt',
-        component: () => import('../../pages/gantt/Gantt.vue'),
+        component: () => import('../../pages/gantt/components/Gantt.vue'),
         meta: {
             roles: [UsuarioNivel.Administrador],
             breadcrumb: [

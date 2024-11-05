@@ -18,9 +18,9 @@ const devePreencher = (diaDeProjeto: Date, tarefa: Tarefa) => {
 </script>
 
 <template>
-    <table class="border-collapse border border-slate-500 border-spacing-0">
+    <table class="">
         <thead>
-            <tr class="border border-black">
+            <tr class="">
                 <th class="border border-black" v-if="dadosProjeto.diasDaPrimeiraSemana > 0"
                     :colspan="dadosProjeto.diasDaPrimeiraSemana">
                     início
@@ -34,16 +34,16 @@ const devePreencher = (diaDeProjeto: Date, tarefa: Tarefa) => {
                 </th>
             </tr>
             <tr>
-                <th :key="day" v-for="day in dadosProjeto.duracaoProjetoExibicao">
+                <th class="border border-black" :key="day" v-for="day in dadosProjeto.duracaoProjetoExibicao">
                     {{ day.toString().padStart(2, '0') }}
                 </th>
             </tr>
         </thead>
-        <tbody class="border border-black">
-            <tr class="border border-black" :key="tarefaIndex" v-for="(tarefa, tarefaIndex) in tarefas">
+        <tbody>
+            <tr class="" :key="tarefaIndex" v-for="(tarefa, tarefaIndex) in tarefas">
                 <td class="p-0"
                     v-for="diaDeProjeto in getListaDias(tarefas[0].data_inicio, tarefas[tarefas.length - 1].data_fim)">
-                    <div v-if="!devePreencher(diaDeProjeto, tarefa)"></div>
+                    <div class="h-6 p-0" v-if="!devePreencher(diaDeProjeto, tarefa)"></div>
                     <div v-else :class="`h-6 bg-${colorClass(tarefa.status)}`"></div>
                 </td>
             </tr>

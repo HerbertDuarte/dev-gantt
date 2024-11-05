@@ -26,10 +26,10 @@ export const useProjetoStore = defineStore('projeto', () => {
     const getDetails = (tarefas: Tarefa[]): ProjetoDetails => {
         if (!projeto.value) {
             return {
-                duracaoProjetoExibicao: 0,
-                diasDaUltimaSemana: 0,
+                duracaoProjetoExibicao: 15,
+                diasDaUltimaSemana: 1,
                 diasDaPrimeiraSemana: 0,
-                qtdSemanasInteiras: 0,
+                qtdSemanasInteiras: 2,
             };
         }
 

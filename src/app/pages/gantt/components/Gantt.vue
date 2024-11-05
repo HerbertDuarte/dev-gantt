@@ -1,39 +1,7 @@
 <template>
-    <div v-if="tarefas && tarefas.length > 0" class="tables-container">
-
-        <div ref="ganttTableRef" @scroll="" class="gantt-table-container">
-            <table class="gantt-table">
-                <thead>
-                    <tr>
-                        <th class="week-title" v-if="dadosProjeto.diasDaPrimeiraSemana > 0"
-                            :colspan="dadosProjeto.diasDaPrimeiraSemana">
-                            início
-                        </th>
-                        <th :key="week" v-for="week in dadosProjeto.qtdSemanasInteiras" colspan="7" class="week-title">
-                            semana {{ week + 1 }}
-                        </th>
-                        <th class="week-title" v-if="dadosProjeto.diasDaUltimaSemana > 0"
-                            :colspan="dadosProjeto.diasDaUltimaSemana">
-                            fim
-                        </th>
-                    </tr>
-                    <tr>
-                        <th :key="day" v-for="day in dadosProjeto.duracaoProjetoExibicao">
-                            {{ day.toString().padStart(2, '0') }}
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr :key="tarefaIndex" v-for="(tarefa, tarefaIndex) in tarefas" :class="`size-4`">
-                        <td v-for="diaDeProjeto in getListaDias(tarefas[0].data_inicio, tarefa.data_fim)">
-                            <div v-if="diaDeProjeto < tarefa.data_inicio" class="empty-space"></div>
-                            <div v-else :class="`size-4 bg-${colorClass(tarefa.status)}`">{{
-                                }}</div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+    <div v-if="tarefas && tarefas.length > 0" class="flex justify-start">
+        <GanttLeftTable class="flex-1" />
+        <GanttChartTable class="flex-1" />
     </div>
     <div v-else>
         <p v-if="projeto && marcos.length === 0">
@@ -64,6 +32,8 @@ import { storeToRefs } from 'pinia';
 import { colorClass } from '../utils/color-class';
 import { useProjetoStore } from '../../projeto/store/projeto.store';
 import { getListaDias } from '../utils/get-lista-dias';
+import GanttLeftTable from './gantt-left-side/GanttLeftTable.vue';
+import GanttChartTable from './gantt-chart/GanttChartTable.vue';
 const ganttStore = useGanttStore();
 const projetoStore = useProjetoStore();
 const { tarefas, marcos } = storeToRefs(ganttStore)

@@ -15,5 +15,12 @@ export default {
             },
         },
     },
-    safelist: ['bg-red-500', 'bg-green-500', 'bg-blue-500', 'bg-green-800'],
+    safelist: [
+        'bg-red-500',
+        'bg-green-500',
+        'bg-blue-500',
+        'bg-green-800',
+        'rounded-l-lg',
+        'rounded-r-lg',
+    ],
 };

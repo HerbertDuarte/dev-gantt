@@ -1,14 +1,14 @@
 <script setup lang="ts">
-
-defineProps({
-    projeto: Object
-})
+import { Projeto } from '../../../projeto/store/projeto.store';
+defineProps<{
+    projeto: Projeto
+}>()
 </script>
 <template>
     <thead>
         <tr>
             <th colspan="6" class="tarefa-table-title">
-                {{ projeto?.nome }}
+                {{ projeto.nome }}
             </th>
         </tr>
         <tr class="tarefa-tr">

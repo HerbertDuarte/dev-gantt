@@ -1,51 +1,22 @@
 <script setup lang="ts">
-import { differenceInDays, format } from 'date-fns';
 import { storeToRefs } from 'pinia';
 import { useProjetoStore } from '../../../projeto/store/projeto.store';
-import { StatusTarefa, Tarefa, useGanttStore } from '../../store/gantt.store';
-import { getListaDias } from '../../utils/get-lista-dias';
-import { colorClass } from '../../utils/color-class';
+import { useGanttStore } from '../../store/gantt.store';
+import GanttChartRow from './GanttChartRow.vue';
+import GanttChartTableHead from './GanttChartTableHead.vue';
 const ganttStore = useGanttStore();
 const projetoStore = useProjetoStore();
-const { tarefas, marcos } = storeToRefs(ganttStore)
-const { projeto } = storeToRefs(projetoStore)
+const { tarefas } = storeToRefs(ganttStore)
 const dadosProjeto = projetoStore.getDetails(tarefas.value);
-
-const devePreencher = (diaDeProjeto: Date, tarefa: Tarefa) => {
-    return diaDeProjeto >= tarefa.data_inicio && diaDeProjeto <= tarefa.data_fim;
-}
 
 </script>
 
 <template>
-    <table class="">
-        <thead>
-            <tr class="">
-                <th class="border border-black" v-if="dadosProjeto.diasDaPrimeiraSemana > 0"
-                    :colspan="dadosProjeto.diasDaPrimeiraSemana">
-                    início
-                </th>
-                <th :key="week" v-for="week in dadosProjeto.qtdSemanasInteiras" colspan="7" class="border border-black">
-                    semana {{ week + 1 }}
-                </th>
-                <th class="border border-black" v-if="dadosProjeto.diasDaUltimaSemana > 0"
-                    :colspan="dadosProjeto.diasDaUltimaSemana">
-                    fim
-                </th>
-            </tr>
-            <tr>
-                <th class="border border-black" :key="day" v-for="day in dadosProjeto.duracaoProjetoExibicao">
-                    {{ day.toString().padStart(2, '0') }}
-                </th>
-            </tr>
-        </thead>
+    <table>
+        <GanttChartTableHead :dadosProjeto="dadosProjeto" />
         <tbody>
-            <tr class="" :key="tarefaIndex" v-for="(tarefa, tarefaIndex) in tarefas">
-                <td class="p-0"
-                    v-for="diaDeProjeto in getListaDias(tarefas[0].data_inicio, tarefas[tarefas.length - 1].data_fim)">
-                    <div class="h-6 p-0" v-if="!devePreencher(diaDeProjeto, tarefa)"></div>
-                    <div v-else :class="`h-6 bg-${colorClass(tarefa.status)}`"></div>
-                </td>
+            <tr :key="tarefaIndex" v-for="(tarefa, tarefaIndex) in tarefas">
+                <GanttChartRow :tarefa="tarefa" :tarefas="tarefas" />
             </tr>
         </tbody>
     </table>

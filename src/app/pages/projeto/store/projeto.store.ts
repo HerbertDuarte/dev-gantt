@@ -8,8 +8,8 @@ export type Projeto = {
     nome: string;
     descricao: string;
     status: string;
-    createdAt: string;
-    updatedAt: string;
+    createdAt: Date;
+    updatedAt: Date;
 };
 
 export type ProjetoDetails = {
@@ -20,14 +20,22 @@ export type ProjetoDetails = {
 };
 
 export const useProjetoStore = defineStore('projeto', () => {
-    const projetos = ref<Projeto[]>([]);
-    const projeto = ref<Projeto>();
+    const projeto = ref<Projeto>({
+        createdAt: new Date(),
+        descricao: '',
+        id: '',
+        nome: '',
+        status: '',
+        updatedAt: new Date(),
+    });
+
+    const projetos = ref<Projeto[]>([projeto.value]);
 
     const getDetails = (tarefas: Tarefa[]): ProjetoDetails => {
         if (!projeto.value) {
             return {
-                duracaoProjetoExibicao: 15,
-                diasDaUltimaSemana: 1,
+                duracaoProjetoExibicao: 16,
+                diasDaUltimaSemana: 2,
                 diasDaPrimeiraSemana: 0,
                 qtdSemanasInteiras: 2,
             };

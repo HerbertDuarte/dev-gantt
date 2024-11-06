@@ -1,19 +1,19 @@
 <script setup lang="ts">
 import { differenceInDays, format } from 'date-fns';
 import { storeToRefs } from 'pinia';
-import { useProjetoStore } from '../../../projeto/store/projeto.store';
+import { Projeto, useProjetoStore } from '../../../projeto/store/projeto.store';
 import { StatusTarefa, useGanttStore } from '../../store/gantt.store';
 import GanttLeftTableHead from './GanttLeftTableHead.vue';
+import { Ref } from 'vue';
 const ganttStore = useGanttStore();
 const projetoStore = useProjetoStore();
-const { tarefas, marcos } = storeToRefs(ganttStore)
+const { tarefas } = storeToRefs(ganttStore)
 const { projeto } = storeToRefs(projetoStore)
-const dadosProjeto = projetoStore.getDetails(tarefas.value);
 </script>
 
 <template>
 
-    <table class="border-collapse border border-slate-500">
+    <table v-if="projeto" class="border-collapse border border-slate-500">
         <GanttLeftTableHead :projeto="projeto" />
         <GanttLeftTableHead :projeto="projeto" />
         <tbody>

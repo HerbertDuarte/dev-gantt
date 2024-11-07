@@ -2,30 +2,34 @@
 import { differenceInDays, format } from 'date-fns';
 import { storeToRefs } from 'pinia';
 import { Projeto, useProjetoStore } from '../../../projeto/store/projeto.store';
-import { StatusTarefa, useGanttStore } from '../../store/gantt.store';
+import { StatusTarefa, Tarefa, useGanttStore } from '../../store/gantt.store';
 import GanttLeftTableHead from './GanttLeftTableHead.vue';
-import { Ref } from 'vue';
+import GanttLeftRow from './GanttLeftRow.vue';
 const ganttStore = useGanttStore();
 const projetoStore = useProjetoStore();
 const { tarefas } = storeToRefs(ganttStore)
 const { projeto } = storeToRefs(projetoStore)
+
+
+function getDuration(tarefa: Tarefa) {
+    return differenceInDays(tarefa.data_fim, tarefa.data_inicio) + 1
+}
+
 </script>
 
 <template>
-
-    <table v-if="projeto" class="border-collapse border border-slate-500">
-        <GanttLeftTableHead :projeto="projeto" />
+    <table v-if="projeto">
         <GanttLeftTableHead :projeto="projeto" />
         <tbody>
-            <tr class="border-collapse border border-slate-500" :key="tarefa.id" v-for="tarefa in tarefas">
-                <td>
+            <tr :key="tarefa.id" v-for="(tarefa, index) in tarefas">
+                <GanttLeftRow :index="index" class="text-left">
                     <p :style="{ paddingLeft: `${tarefa.nivel * 16}px` }">
                         <q-tooltip anchor="center middle" self="center middle" :delay="1000">
                             {{ tarefa.num }} - {{ tarefa.nome }}</q-tooltip>
                         {{ tarefa.num }} - {{ tarefa.nome }}
                     </p>
-                </td>
-                <td>
+                </GanttLeftRow>
+                <GanttLeftRow :index="index" class="text-center">
                     <p>
                         <span v-if="
                             tarefa.status === StatusTarefa.MARCO ||
@@ -37,18 +41,17 @@ const { projeto } = storeToRefs(projetoStore)
                             {{ tarefa.responsavel?.nome.split(' ')[0] }}
                         </span>
                     </p>
-                </td>
-                <td>
+                </GanttLeftRow>
+                <GanttLeftRow :index="index" class="text-center">
                     {{ format(tarefa.data_inicio, "P") }}
-                </td>
-                <td>
+                </GanttLeftRow>
+                <GanttLeftRow :index="index" class="text-center">
                     {{ format(tarefa.data_fim, "P") }}
-                </td>
-                <td>
-                    {{ `${differenceInDays(tarefa.data_fim, tarefa.data_fim)}
-                    ${differenceInDays(tarefa.data_fim, tarefa.data_fim) > 1 ? 'dias' : 'dia'}` }}
-                </td>
-                <td>
+                </GanttLeftRow>
+                <GanttLeftRow :index="index" class="text-center">
+                    {{ `${getDuration(tarefa)} ${getDuration(tarefa) > 1 ? 'dias' : 'dia'}` }}
+                </GanttLeftRow>
+                <!-- <GanttLeftRow :index="index" class="text-center">
                     <div v-if="
                         (tarefa.tarefas_filhas && tarefa.tarefas_filhas.length > 0)
 
@@ -56,9 +59,9 @@ const { projeto } = storeToRefs(projetoStore)
                         <p>{{ tarefa.status }}</p>
                     </div>
                     <div v-else>
-                        <SelectStatus @update-tarefa="" :tarefa="tarefa" />
+                        <SelectStatus :tarefa="tarefa" />
                     </div>
-                </td>
+                </GanttLeftRow> -->
             </tr>
         </tbody>
     </table>

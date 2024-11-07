@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import { Tarefa } from '../../gantt/store/gantt.store';
 import { differenceInDays } from 'date-fns';
 
@@ -19,17 +19,18 @@ export type ProjetoDetails = {
     qtdSemanasInteiras: number;
 };
 
-export const useProjetoStore = defineStore('projeto', () => {
-    const projeto = ref<Projeto>({
-        createdAt: new Date(),
-        descricao: '',
-        id: '',
-        nome: '',
-        status: '',
-        updatedAt: new Date(),
-    });
+const fakeProjeto = {
+    createdAt: new Date(),
+    descricao: 'vazia',
+    id: 'teste',
+    nome: 'nome',
+    status: 'andamento',
+    updatedAt: new Date(),
+};
 
-    const projetos = ref<Projeto[]>([projeto.value]);
+export const useProjetoStore = defineStore('projeto', () => {
+    const projeto = ref<Projeto>();
+    const projetos = ref<Projeto[]>([]);
 
     const getDetails = (tarefas: Tarefa[]): ProjetoDetails => {
         if (!projeto.value) {
@@ -60,6 +61,37 @@ export const useProjetoStore = defineStore('projeto', () => {
             tarefas[tarefas.length - 1].data_inicio,
         );
     }
+
+    onMounted(() => {
+        projetos.value = [
+            {
+                id: '1',
+                nome: 'Projeto 1',
+                descricao: 'Descrição do projeto 1',
+                status: 'andamento',
+                createdAt: new Date(),
+                updatedAt: new Date(),
+            },
+            {
+                id: '2',
+                nome: 'Projeto 2',
+                descricao: 'Descrição do projeto 2',
+                status: 'andamento',
+                createdAt: new Date(),
+                updatedAt: new Date(),
+            },
+            {
+                id: '3',
+                nome: 'Projeto 3',
+                descricao: 'Descrição do projeto 3',
+                status: 'andamento',
+                createdAt: new Date(),
+                updatedAt: new Date(),
+            },
+        ];
+
+        projeto.value = projetos.value[0];
+    });
 
     return {
         projetos,

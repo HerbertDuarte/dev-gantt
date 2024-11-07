@@ -6,7 +6,8 @@ import { colorClass } from '../../utils/color-class';
 
 defineProps<{
     tarefa: Tarefa,
-    tarefas: Tarefa[]
+    tarefas: Tarefa[],
+    index: number
 }>();
 
 const devePreencher = (diaDeProjeto: Date, tarefa: Tarefa) => {
@@ -28,9 +29,11 @@ const addDetailsClass = (diaDeProjeto: Date, tarefa: Tarefa) => {
 </script>
 
 <template>
-    <td class="p-0" v-for="diaDeProjeto in getListaDias(tarefas[0].data_inicio, tarefas[tarefas.length - 1].data_fim)">
-        <div class="h-6 p-0" v-if="!devePreencher(diaDeProjeto, tarefa)"></div>
-        <div v-else :class="`h-6 p-0 bg-${colorClass(tarefa)} ${addDetailsClass(diaDeProjeto, tarefa)}`">
-        </div>
-    </td>
+    <tr>
+        <td :class="`p-0 ${index % 2 === 0 ? 'bg-gray-100' : 'bg-gray-200'}`"
+            v-for="diaDeProjeto in getListaDias(tarefas[0].data_inicio, tarefas[tarefas.length - 1].data_fim)">
+            <div class="h-8 p-0" v-if="!devePreencher(diaDeProjeto, tarefa)" />
+            <div v-else :class="`h-7 p-0 bg-${colorClass(tarefa)}/50 ${addDetailsClass(diaDeProjeto, tarefa)}`" />
+        </td>
+    </tr>
 </template>

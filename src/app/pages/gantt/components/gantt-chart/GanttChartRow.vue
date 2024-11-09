@@ -15,16 +15,10 @@ const devePreencher = (diaDeProjeto: Date, tarefa: Tarefa) => {
 }
 
 const addDetailsClass = (diaDeProjeto: Date, tarefa: Tarefa) => {
-    let className = ""
-
-    if (isSameDay(diaDeProjeto, tarefa.data_inicio)) {
-        className += "rounded-l-lg"
-    }
-
-    if (isSameDay(diaDeProjeto, tarefa.data_fim)) {
-        className += " rounded-r-lg"
-    }
-    return className
+    const classList: string[] = []
+    isSameDay(diaDeProjeto, tarefa.data_inicio) && classList.push("rounded-l-lg")
+    isSameDay(diaDeProjeto, tarefa.data_fim) && classList.push("rounded-r-lg")
+    return classList.join(" ")
 }
 </script>
 

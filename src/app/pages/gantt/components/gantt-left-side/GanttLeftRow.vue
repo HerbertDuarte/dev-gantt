@@ -5,7 +5,7 @@ defineProps<{
 </script>
 
 <template>
-    <td :class="`p-0 ${index % 2 === 0 ? 'bg-gray-100' : 'bg-gray-200'}`">
+    <td :class="`p-0 whitespace-nowrap text-nowrap px-2 ${index % 2 === 0 ? 'bg-gray-100' : 'bg-gray-200'}`">
         <slot />
     </td>
 </template>

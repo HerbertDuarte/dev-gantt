@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { Projeto } from '../../../projeto/store/projeto.store';
+import { Projeto } from '../../store/gantt.store';
+
 defineProps<{
     projeto: Projeto
 }>()

@@ -23,11 +23,14 @@ import { createPinia } from 'pinia';
 import { quasarOptions } from './config/quasar-options';
 import { useAuthStore } from './app/auth/auth-store';
 import { routerConfig } from './app/router/config/router-config';
+import piniaPersistedState from 'pinia-plugin-persistedstate';
 
 const app = createApp(AppComponent);
 
 async function bootstrap(app: App<Element>) {
-    app.use(createPinia());
+    const pinia = createPinia();
+    pinia.use(piniaPersistedState);
+    app.use(pinia);
     const authStore = useAuthStore();
     await authStore.initSystem();
     app.use(routerConfig());

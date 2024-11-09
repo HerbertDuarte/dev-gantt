@@ -1,9 +1,15 @@
+<script setup lang="ts">
+import { useGanttStore } from '../store/gantt.store';
+import { storeToRefs } from 'pinia';
+import GanttLeftTable from './gantt-left-side/GanttLeftTable.vue';
+import GanttChartTable from './gantt-chart/GanttChartTable.vue';
+const ganttStore = useGanttStore();
+const { tarefas, marcos, projeto } = storeToRefs(ganttStore)
+</script>
 <template>
     <div v-if="tarefas && tarefas.length > 0" class="flex justify-start">
-        <GanttLeftTable
-            class="flex-1 border-4 outline outline-1 outline-zinc-200 shadow-lg overflow-hidden rounded-l-lg" />
-        <GanttChartTable
-            class="flex-1 border-4 outline outline-1 outline-zinc-200 shadow-lg overflow-hidden rounded-r-lg" />
+        <GanttLeftTable class="gantt-table rounded-l-lg" />
+        <GanttChartTable class="gantt-table rounded-r-lg" />
     </div>
     <div v-else>
         <p v-if="projeto && marcos.length === 0">
@@ -27,14 +33,8 @@
     </div>
 
 </template>
-<script setup lang="ts">
-import { useGanttStore } from '../store/gantt.store';
-import { storeToRefs } from 'pinia';
-import { useProjetoStore } from '../../projeto/store/projeto.store';
-import GanttLeftTable from './gantt-left-side/GanttLeftTable.vue';
-import GanttChartTable from './gantt-chart/GanttChartTable.vue';
-const ganttStore = useGanttStore();
-const projetoStore = useProjetoStore();
-const { tarefas, marcos } = storeToRefs(ganttStore)
-const { projeto } = storeToRefs(projetoStore)
-</script>
+<style lang="css" scoped>
+.gantt-table {
+    @apply flex-1 border-4 outline outline-1 outline-zinc-200 shadow-lg overflow-hidden;
+}
+</style>

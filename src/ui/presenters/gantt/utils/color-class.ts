@@ -13,7 +13,9 @@ export const colorClass = (tarefa: Tarefa) => {
             return 'green-800';
         case StatusTarefa.PENDENTE:
             return 'yellow-500';
+        case StatusTarefa.NAO_INICIADO:
+            return 'gray-400';
         default:
-            return 'grey-500';
+            return 'gray-400';
     }
 };

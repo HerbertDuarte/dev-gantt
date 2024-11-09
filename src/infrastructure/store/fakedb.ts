@@ -5,6 +5,7 @@ enum StatusTarefa {
     EM_ANDAMENTO = 'Em andamento',
     CONCLUIDO = 'Concluido',
     CONCLUIDO_ATRASO = 'Concluido com atraso',
+    NAO_INICIADO = 'Não iniciado',
     MARCO = 'Marco',
 }
 export const fakeTarefas = [
@@ -68,7 +69,7 @@ export const fakeTarefas = [
         responsavel: { nome: 'Responsável 1' },
         data_inicio: parseISO('2025-10-17'),
         data_fim: parseISO('2025-10-25'),
-        status: StatusTarefa.EM_ANDAMENTO,
+        status: StatusTarefa.NAO_INICIADO,
         id: 5,
         nivel: 1,
         num: 2,

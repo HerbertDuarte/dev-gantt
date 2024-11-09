@@ -1,19 +1,18 @@
 <template>
     <thead>
         <tr class="bg-gray-100 h-8">
-            <th v-if="dadosProjeto.diasDaPrimeiraSemana > 0" :colspan="getColSpan(dadosProjeto.diasDaPrimeiraSemana)">
+            <th v-if="periodo.diasDaPrimeiraSemana > 0" :colspan="getColSpan(periodo.diasDaPrimeiraSemana)">
                 início
             </th>
-            <th :key="week" v-for="week in dadosProjeto.qtdSemanasInteiras" colspan="7">
+            <th :key="week" v-for="week in periodo.qtdSemanasInteiras" colspan="7">
                 semana {{ week + 1 }}
             </th>
-            <th v-if="dadosProjeto.diasDaUltimaSemana > 0" :colspan="getColSpan(dadosProjeto.diasDaUltimaSemana)">
+            <th v-if="periodo.diasDaUltimaSemana > 0" :colspan="getColSpan(periodo.diasDaUltimaSemana)">
                 fim
             </th>
         </tr>
         <tr class="bg-gray-200 h-8">
-            <th v-if="dadosProjeto.duracaoProjetoExibicao > 0" :key="day"
-                v-for="day in dadosProjeto.duracaoProjetoExibicao">
+            <th v-if="periodo.duracaoProjetoExibicao > 0" :key="day" v-for="day in periodo.duracaoProjetoExibicao">
                 {{ day.toString().padStart(2, '0') }}
             </th>
         </tr>
@@ -22,52 +21,24 @@
 
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
-import { ProjetoDetails, Tarefa, useGanttStore } from '../../store/gantt.store';
+import { ProjetoDetails, useGanttStore } from '../../store/gantt.store';
 import { storeToRefs } from 'pinia';
-import { differenceInDays } from 'date-fns';
-const { projeto, tarefas } = storeToRefs(useGanttStore());
+import { getPeriodoGantt } from '../../../projeto/utils/get-projeto-gantt';
+const { tarefas } = storeToRefs(useGanttStore());
 
-const dadosProjeto = ref<ProjetoDetails>({
-    duracaoProjetoExibicao: 16,
-    diasDaUltimaSemana: 2,
+const periodo = ref<ProjetoDetails>({
+    duracaoProjetoExibicao: 0,
+    diasDaUltimaSemana: 0,
     diasDaPrimeiraSemana: 0,
-    qtdSemanasInteiras: 2,
+    qtdSemanasInteiras: 0,
 })
-function getDetails(): ProjetoDetails {
-    if (!projeto.value) {
-        return {
-            duracaoProjetoExibicao: 16,
-            diasDaUltimaSemana: 2,
-            diasDaPrimeiraSemana: 0,
-            qtdSemanasInteiras: 2,
-        };
-    }
-
-    const duracaoProjetoExibicao = defineDuracaoProjeto(tarefas.value);
-    const diasDaPrimeiraSemana = 2;
-    const diasDaUltimaSemana = 0;
-    const qtdSemanasInteiras = 2;
-
-    return {
-        duracaoProjetoExibicao,
-        diasDaUltimaSemana,
-        diasDaPrimeiraSemana,
-        qtdSemanasInteiras,
-    };
-};
-
-function defineDuracaoProjeto(tarefas: Tarefa[]) {
-    return differenceInDays(
-        tarefas[tarefas.length - 1].data_fim,
-        tarefas[0].data_inicio) + 1;
-}
 
 function getColSpan(value: number) {
     return value > 0 ? value : 1;
 }
 
 onMounted(() => {
-    dadosProjeto.value = getDetails();
+    periodo.value = getPeriodoGantt(tarefas.value);
 });
 
 </script>

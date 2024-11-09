@@ -37,26 +37,14 @@ export type Tarefa = {
     tarefas_filhas: Tarefa[];
 };
 
-export const useGanttStore = defineStore(
-    'gantt',
-    () => {
-        const tarefas = ref<Tarefa[]>(fakeTarefas);
-        const tarefa = ref<Tarefa>();
-        const marcos = ref(fakeMarcos);
-        const projetos = ref<Projeto[]>(fakeProjetos);
-        const projeto = ref<Projeto>(fakeProjetos[0]);
+export const useGanttStore = defineStore('gantt', () => {
+    const tarefas = ref<Tarefa[]>(fakeTarefas);
+    const tarefa = ref<Tarefa>();
+    const marcos = ref(fakeMarcos);
 
-        return {
-            tarefas,
-            tarefa,
-            marcos,
-            projetos,
-            projeto,
-        };
-    },
-    {
-        persist: {
-            storage: localStorage,
-        },
-    },
-);
+    return {
+        tarefas,
+        tarefa,
+        marcos,
+    };
+});

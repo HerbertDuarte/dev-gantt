@@ -1,4 +1,5 @@
 export class Periodo {
+    dias: Date[] = [];
     duracaoProjetoExibicao: number = 0;
     diasDaUltimaSemana: number = 0;
     diasDaPrimeiraSemana: number = 0;

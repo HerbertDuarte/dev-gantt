@@ -17,12 +17,12 @@ import '@quasar/extras/themify/themify.css';
 import '@quasar/extras/line-awesome/line-awesome.css';
 import '@quasar/extras/bootstrap-icons/bootstrap-icons.css';
 import 'quasar/src/css/index.sass';
-import AppComponent from './application/App.vue';
-import './styles/globals.css';
+import AppComponent from './App.vue';
+import './ui/styles/globals.css';
 import { createPinia } from 'pinia';
-import { quasarOptions } from './config/quasar-options';
-import { useAuthStore } from './application/auth/auth-store';
-import { routerConfig } from './application/router/config/router-config';
+import { quasarOptions } from './infrastructure/config/quasar-options';
+import { useAuthStore } from './infrastructure/store/auth-store';
+import { routerConfig } from './infrastructure/router/config/router-config';
 import piniaPersistedState from 'pinia-plugin-persistedstate';
 
 const app = createApp(AppComponent);

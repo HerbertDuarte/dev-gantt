@@ -22,5 +22,8 @@ export default {
         'bg-green-800/50',
         'rounded-l-lg',
         'rounded-r-lg',
+        'border-l-0',
+        'border-r-0',
+        'bg-gray-500',
     ],
 };

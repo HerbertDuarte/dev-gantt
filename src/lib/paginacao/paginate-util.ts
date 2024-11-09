@@ -1,4 +1,4 @@
-import { api } from '../../boot/axios';
+import { api } from '../../infrastructure/boot/axios';
 import { PageProps } from './page-props';
 import { PaginateResponse } from './paginate-response';
 import { Queries } from './queries';

@@ -11,6 +11,8 @@ export const colorClass = (tarefa: Tarefa) => {
             return 'green-500';
         case StatusTarefa.CONCLUIDO_ATRASO:
             return 'green-800';
+        case StatusTarefa.PENDENTE:
+            return 'yellow-500';
         default:
             return 'grey-500';
     }

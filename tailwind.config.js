@@ -20,6 +20,7 @@ export default {
         'bg-green-500/50',
         'bg-blue-500/50',
         'bg-green-800/50',
+        'bg-yellow-500/50',
         'rounded-l-lg',
         'rounded-r-lg',
         'border-l-0',

@@ -16,7 +16,7 @@
             <th :class="`border-x border-white min-w-[40px] ${fixDiaInicialFinalClass(index)}`"
                 v-if="periodo.duracaoProjetoExibicao > 0" :key="index" v-for="(day, index) in periodo.dias">
                 <div :class="`flex flex-col ${fimSemanaClass(day)}`">
-                    <span>{{ (index + 1).toString().padStart(2, '0') }}</span>
+                    <span>{{ (day.getDate()).toString().padStart(2, '0') }}</span>
                     <span>{{ obterSiglaDia(day) }}</span>
                 </div>
 

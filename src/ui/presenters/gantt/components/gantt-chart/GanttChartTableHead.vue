@@ -1,6 +1,6 @@
 <template>
-    <thead class="uppercase sticky top-0 ">
-        <tr class="bg-gray-100 h-8">
+    <thead class="uppercase sticky top-0 z-10">
+        <tr class="bg-gray-100 h-9">
             <th class="outline-r" v-if="periodo.diasDaPrimeiraSemana > 0"
                 :colspan="getColSpan(periodo.diasDaPrimeiraSemana)">
                 início
@@ -43,7 +43,7 @@ function getColSpan(value: number) {
 
 const fimSemanaClass = (day: Date) => {
     if (isSunday(day) || isSaturday(day)) {
-        return "bg-slate-300/70"
+        return "bg-slate-300/70 text-slate-800"
     }
 }
 

@@ -11,7 +11,7 @@ enum StatusTarefa {
 }
 export const fakeTarefas = [
     {
-        nome: 'Tarefa 1',
+        nome: 'Tarefa com nome muito grande 1',
         responsavel: { nome: 'Responsável 1' },
         data_inicio: parseISO('2025-10-01'),
         data_fim: parseISO('2025-10-05'),
@@ -22,7 +22,7 @@ export const fakeTarefas = [
         tarefas_filhas: [],
     },
     {
-        nome: 'Tarefa 2',
+        nome: 'TTarefa com nome muito grande2',
         responsavel: { nome: 'Responsável 1' },
         data_inicio: parseISO('2025-10-03'),
         data_fim: parseISO('2025-10-05'),
@@ -33,7 +33,7 @@ export const fakeTarefas = [
         tarefas_filhas: [],
     },
     {
-        nome: 'Tarefa 3',
+        nome: 'TTarefa com nome muito grande3',
         responsavel: { nome: 'Responsável 1' },
         data_inicio: parseISO('2025-10-06'),
         data_fim: parseISO('2025-10-10'),
@@ -44,7 +44,18 @@ export const fakeTarefas = [
         tarefas_filhas: [],
     },
     {
-        nome: 'Tarefa 4',
+        nome: 'TTarefa com nome muito grande3',
+        responsavel: { nome: 'Responsável 1' },
+        data_inicio: parseISO('2025-10-09'),
+        data_fim: parseISO('2025-10-10'),
+        status: StatusTarefa.EM_ANDAMENTO,
+        id: 3,
+        nivel: 1,
+        num: 2,
+        tarefas_filhas: [],
+    },
+    {
+        nome: 'Tarefa com nome muito grande4',
         responsavel: { nome: 'Responsável 1' },
         data_inicio: parseISO('2025-10-11'),
         data_fim: parseISO('2025-10-15'),
@@ -55,9 +66,31 @@ export const fakeTarefas = [
         tarefas_filhas: [],
     },
     {
-        nome: 'Tarefa 5',
+        nome: 'TTarefa com nome muito grande 5',
         responsavel: { nome: 'Responsável 1' },
         data_inicio: parseISO('2025-10-16'),
+        data_fim: parseISO('2025-10-16'),
+        status: StatusTarefa.NAO_INICIADO,
+        id: 5,
+        nivel: 1,
+        num: 2,
+        tarefas_filhas: [],
+    },
+    {
+        nome: 'Tarefa com nome muito grande 6',
+        responsavel: { nome: 'Responsável 1' },
+        data_inicio: parseISO('2025-10-10'),
+        data_fim: parseISO('2025-10-16'),
+        status: StatusTarefa.CONCLUIDO,
+        id: 5,
+        nivel: 1,
+        num: 2,
+        tarefas_filhas: [],
+    },
+    {
+        nome: 'Tarefa com nome muito grande6',
+        responsavel: { nome: 'Responsável 1' },
+        data_inicio: parseISO('2025-10-12'),
         data_fim: parseISO('2025-10-16'),
         status: StatusTarefa.CONCLUIDO_ATRASO,
         id: 5,
@@ -66,7 +99,7 @@ export const fakeTarefas = [
         tarefas_filhas: [],
     },
     {
-        nome: 'Tarefa 6',
+        nome: 'Tarefa com nome muito grande6',
         responsavel: { nome: 'Responsável 1' },
         data_inicio: parseISO('2025-10-17'),
         data_fim: parseISO('2025-10-25'),
@@ -77,7 +110,7 @@ export const fakeTarefas = [
         tarefas_filhas: [],
     },
     {
-        nome: 'Tarefa 7',
+        nome: 'Tarefa com nome muito grande7',
         responsavel: { nome: 'Responsável 1' },
         data_inicio: parseISO('2025-10-26'),
         data_fim: parseISO('2025-10-29'),
@@ -118,7 +151,7 @@ export const fakeMarcos: Marco[] = [
 export const fakeProjetos = [
     {
         id: '1',
-        nome: 'Projeto 1',
+        nome: 'Desenvolvimento de Software',
         descricao: 'Descrição do projeto 1',
         status: 'andamento',
         createdAt: new Date(),

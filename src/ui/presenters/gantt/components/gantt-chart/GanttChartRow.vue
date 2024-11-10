@@ -45,7 +45,7 @@ const fimSemanaClass = (classList: string[], diaDeProjeto: Date) => {
     <tr>
         <td :class="`p-0 ${index % 2 === 0 ? 'bg-gray-100' : 'bg-gray-200'}`"
             v-for="diaDeProjeto in getListaDias(tarefas[0].data_inicio, tarefas[tarefas.length - 1].data_fim)">
-            <div :class="`h-8 p-0 ${diaClass(diaDeProjeto, tarefa)}`" v-if="!devePreencher(diaDeProjeto, tarefa)" />
+            <div :class="`h-9 p-0 ${diaClass(diaDeProjeto, tarefa)}`" v-if="!devePreencher(diaDeProjeto, tarefa)" />
             <div v-else :class="`h-7 p-0 bg-${colorClass(tarefa)}/50 ${tarefaClass(diaDeProjeto, tarefa)}`" />
         </td>
     </tr>

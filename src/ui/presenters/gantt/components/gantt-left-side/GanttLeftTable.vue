@@ -6,7 +6,34 @@ import GanttLeftRow from './GanttLeftRow.vue';
 import { useProjetoStore } from '../../../../../infrastructure/store/projeto.store';
 import { useGanttStore } from '../../../../../infrastructure/store/gantt.store';
 import { Tarefa } from '../../../../../domain/entities/tarefa';
-import { StatusTarefa } from '../../../../../domain/enum/status-tarefa.enum';
+
+
+const responsaveis = [
+    {
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541",
+        id: 1,
+        nome: 'João'
+    },
+    {
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541",
+        id: 2,
+        nome: 'Maria'
+    },
+    {
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541",
+        id: 3,
+        nome: 'José'
+    },
+    {
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541",
+        id: 4,
+        nome: 'Maria'
+    },
+
+]
+
+const reduzParaDois = (arr: any[]) => arr.slice(0, 2)
+const possuiMaisDeDois = (arr: any[]) => arr.length > 2
 
 const { tarefas } = storeToRefs(useGanttStore());
 const { projeto } = storeToRefs(useProjetoStore());
@@ -20,31 +47,28 @@ function getDuration(tarefa: Tarefa) {
 <template>
     <table v-if="projeto">
         <GanttLeftTableHead :projeto="projeto" />
-        <tbody>
-            <tr :key="tarefa.id" v-for="(tarefa, index) in tarefas" class="h-8">
+        <tbody class="text-zinc-700">
+            <tr :key="tarefa.id" v-for="(tarefa, index) in tarefas" class="h-9">
                 <GanttLeftRow :index="index" class="text-left">
                     <p :style="{ paddingLeft: `${tarefa.nivel * 16}px` }">
                         {{ tarefa.nome }}
                     </p>
                 </GanttLeftRow>
-                <GanttLeftRow :index="index" class="text-center">
-
-                    <span v-if="
-                        tarefa.status === StatusTarefa.MARCO ||
-                        (tarefa.tarefas_filhas && tarefa.tarefas_filhas.length > 0)
-                    ">
-                        --
-                    </span>
-                    <span v-else>
-                        {{ tarefa.responsavel?.nome.split(' ')[0] }}
-                    </span>
-
+                <GanttLeftRow :index="index" class="flex justify-center items-center h-9 gap-1">
+                    <q-avatar class="q-mb-sm size-6 pt-1" v-for="responsavel in reduzParaDois(responsaveis)">
+                        <img :src="responsavel.imageUrl" />
+                    </q-avatar>
+                    <p v-if="possuiMaisDeDois(responsaveis)">+{{ responsaveis.length - 2 }}</p>
                 </GanttLeftRow>
                 <GanttLeftRow :index="index" class="text-center">
-                    {{ format(tarefa.data_inicio, "dd/MM/yyyy") }}
+                    <div class="bg-slate-300 rounded-full text-slate-700 w-fit px-2.5 mx-auto">
+                        {{ format(tarefa.data_inicio, "dd/MM/yyyy") }}
+                    </div>
                 </GanttLeftRow>
                 <GanttLeftRow :index="index" class="text-center">
-                    {{ format(tarefa.data_fim, "dd/MM/yyyy") }}
+                    <div class="bg-slate-300 rounded-full text-slate-700 w-fit px-2.5 mx-auto">
+                        {{ format(tarefa.data_fim, "dd/MM/yyyy") }}
+                    </div>
                 </GanttLeftRow>
                 <GanttLeftRow :index="index" class="text-center">
                     {{ `${getDuration(tarefa)} ${getDuration(tarefa) > 1 ? 'dias' : 'dia'}` }}

@@ -18,15 +18,14 @@ function syncScroll(source: string) {
 
     if (!sourceDiv || !targetDiv) return
     targetDiv.scrollTop = sourceDiv.scrollTop
-    targetDiv.scrollLeft = sourceDiv.scrollLeft
 }
 </script>
 <template>
     <div v-if="tarefas && tarefas.length > 0" class=" main-container ">
-        <div @scroll="syncScroll('div1')" ref="div1" class="rounded-l-lg table-container max-w-fit ">
-            <GanttLeftTable class="gantt-table bg-red-300" />
+        <div @scroll="syncScroll('div1')" ref="div1" class="rounded-l-lg table-container max-w-fit resize-x">
+            <GanttLeftTable class="gantt-table" />
         </div>
-        <div @scroll="syncScroll('div2')" ref="div2" class=" rounded-r-lg table-container">
+        <div @scroll="syncScroll('div2')" ref="div2" class=" rounded-r-lg table-container flex-1">
             <GanttChartTable class="gantt-table" />
         </div>
     </div>
@@ -41,7 +40,7 @@ function syncScroll(source: string) {
 }
 
 .table-container {
-    @apply flex-1 overflow-x-scroll border-4 outline outline-1 outline-zinc-200 shadow-lg
+    @apply overflow-x-scroll border-4 outline outline-1 outline-zinc-200 shadow-lg
 }
 
 .main-container {

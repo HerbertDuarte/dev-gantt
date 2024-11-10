@@ -21,7 +21,7 @@ function getDuration(tarefa: Tarefa) {
     <table v-if="projeto">
         <GanttLeftTableHead :projeto="projeto" />
         <tbody>
-            <tr :key="tarefa.id" v-for="(tarefa, index) in tarefas">
+            <tr :key="tarefa.id" v-for="(tarefa, index) in tarefas" class="h-8">
                 <GanttLeftRow :index="index" class="text-left">
                     <p :style="{ paddingLeft: `${tarefa.nivel * 16}px` }">
                         {{ tarefa.nome }}

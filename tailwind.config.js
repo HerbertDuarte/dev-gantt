@@ -5,13 +5,13 @@ export default {
     theme: {
         extend: {
             height: {
-                content: 'calc(100dvh - 140px)', // Define a altura personalizada
+                content: 'calc(100dvh - 160px)', // Define a altura personalizada
             },
             minHeight: {
-                content: 'calc(100dvh - 140px)',
+                content: 'calc(100dvh - 160px)',
             },
             maxHeight: {
-                content: 'calc(100dvh - 140px)',
+                content: 'calc(100dvh - 160px)',
             },
         },
     },

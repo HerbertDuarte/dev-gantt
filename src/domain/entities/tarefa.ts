@@ -5,7 +5,7 @@ export class Tarefa {
     responsavel: Reponsavel = new Reponsavel();
     data_inicio: Date = new Date();
     data_fim: Date = new Date();
-    status: StatusTarefa = StatusTarefa.PENDENTE;
+    status: StatusTarefa = StatusTarefa.NAO_INICIADO;
     id: number = 0;
     nivel: number = 0;
     num: number = 0;

@@ -1,4 +1,5 @@
 import { parseISO } from 'date-fns';
+import { Marco } from '../../domain/entities/marco';
 
 enum StatusTarefa {
     PENDENTE = 'Pendente',
@@ -109,7 +110,10 @@ export const fakeTarefas = [
         tarefas_filhas: [],
     },
 ];
-export const fakeMarcos = [{ nome: 'Marco 1' }];
+export const fakeMarcos: Marco[] = [
+    { nome: 'Marco 1', id: 1 },
+    { nome: 'Marco 2', id: 2 },
+];
 
 export const fakeProjetos = [
     {

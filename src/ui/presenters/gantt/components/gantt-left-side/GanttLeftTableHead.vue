@@ -6,7 +6,7 @@ defineProps<{
 }>()
 </script>
 <template>
-    <thead class="uppercase">
+    <thead class="uppercase sticky top-0">
         <tr class="bg-gray-100 h-8">
             <th colspan="6" class="text-left px-5">
                 {{ projeto.nome }}

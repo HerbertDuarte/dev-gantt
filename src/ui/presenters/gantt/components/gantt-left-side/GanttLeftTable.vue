@@ -39,7 +39,7 @@ const { tarefas } = storeToRefs(useGanttStore());
 const { projeto } = storeToRefs(useProjetoStore());
 
 function getDuration(tarefa: Tarefa) {
-    return differenceInDays(tarefa.data_fim, tarefa.data_inicio) + 1
+    return differenceInDays(tarefa.dataFim, tarefa.dataInicio) + 1
 }
 
 </script>
@@ -50,7 +50,7 @@ function getDuration(tarefa: Tarefa) {
         <tbody class="text-zinc-700">
             <tr :key="tarefa.id" v-for="(tarefa, index) in tarefas" class="h-9">
                 <GanttLeftRow :index="index" class="text-left">
-                    <p :style="{ paddingLeft: `${tarefa.nivel * 16}px` }">
+                    <p class="pl-10">
                         {{ tarefa.nome }}
                     </p>
                 </GanttLeftRow>
@@ -62,12 +62,12 @@ function getDuration(tarefa: Tarefa) {
                 </GanttLeftRow>
                 <GanttLeftRow :index="index" class="text-center">
                     <div class="bg-slate-300 rounded-full text-slate-700 w-fit px-2.5 mx-auto">
-                        {{ format(tarefa.data_inicio, "dd/MM/yyyy") }}
+                        {{ format(tarefa.dataInicio, "dd/MM/yyyy") }}
                     </div>
                 </GanttLeftRow>
                 <GanttLeftRow :index="index" class="text-center">
                     <div class="bg-slate-300 rounded-full text-slate-700 w-fit px-2.5 mx-auto">
-                        {{ format(tarefa.data_fim, "dd/MM/yyyy") }}
+                        {{ format(tarefa.dataFim, "dd/MM/yyyy") }}
                     </div>
                 </GanttLeftRow>
                 <GanttLeftRow :index="index" class="text-center">

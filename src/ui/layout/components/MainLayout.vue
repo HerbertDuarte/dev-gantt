@@ -12,10 +12,10 @@
                     <menu-options />
                 </div>
             </q-toolbar>
-            <div class="flex items-center text-2xl pb-1.5 pt-3 px-10 text-slate-600">
+            <div class="flex items-center text-2xl pb-1.5 pt-3 px-10 text-slate-700">
                 <q-icon class="cursor-pointer" @click="() => router.push('/')" name="home" />
                 <div class="flex items-center" v-for="breadcrumb in route.meta?.breadcrumb">
-                    <q-icon class="font-bold" name="chevron_right" />
+                    <q-icon class="font-medium text-slate-500" name="chevron_right" />
                     <p @click="() => router.push(breadcrumb.path)" class="uppercase text-lg font-medium cursor-pointer">
                         {{ breadcrumb.title }}
                     </p>

@@ -3,7 +3,7 @@ import { StatusTarefa } from '../../../../domain/enum/status-tarefa.enum';
 
 export const colorClass = (tarefa: Tarefa) => {
     const hoje = new Date();
-    if (hoje > tarefa.data_fim) return 'red-500';
+    if (hoje > tarefa.dataFim) return 'red-500';
     switch (tarefa.status) {
         case StatusTarefa.EM_ANDAMENTO:
             return 'blue-500';

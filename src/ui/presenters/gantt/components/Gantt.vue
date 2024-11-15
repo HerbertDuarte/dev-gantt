@@ -22,8 +22,8 @@ function syncScroll(source: string) {
 </script>
 <template>
     <div v-if="tarefas && tarefas.length > 0" class=" main-container ">
-        <div @scroll="syncScroll('div1')" ref="div1" class="rounded-l-lg table-container max-w-fit resize-x">
-            <GanttLeftTable class="gantt-table" />
+        <div @scroll="syncScroll('div1')" ref="div1" class="rounded-l-lg table-container max-w-fit resize-x ">
+            <GanttLeftTable class="gantt-table " />
         </div>
         <div @scroll="syncScroll('div2')" ref="div2" class=" rounded-r-lg table-container flex-1">
             <GanttChartTable class="gantt-table" />
@@ -35,20 +35,19 @@ function syncScroll(source: string) {
 
 </template>
 <style lang="css" scoped>
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
 .gantt-table {
     @apply min-w-full min-h-full;
 }
 
 .table-container {
-    @apply overflow-x-scroll border-4 outline outline-1 outline-zinc-200 shadow-lg
+    @apply overflow-x-scroll border-4 shadow-lg hide-scrollbar
 }
 
 .main-container {
     @apply flex justify-start h-content;
-}
-
-
-.hide-scrollbar::-webkit-scrollbar {
-    display: none;
 }
 </style>

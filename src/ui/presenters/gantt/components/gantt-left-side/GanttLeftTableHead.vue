@@ -7,12 +7,12 @@ defineProps<{
 </script>
 <template>
     <thead class="uppercase sticky top-0 z-10">
-        <tr class="bg-gray-100 h-9">
+        <tr class="bg-white bla h-9">
             <th colspan="6" class="text-left px-5">
                 {{ projeto.nome }}
             </th>
         </tr>
-        <tr class="bg-gray-200 h-11">
+        <tr class="bg-gray-100 h-11">
             <th class="px-4 whitespace-nowrap text-nowrap">Tarefa</th>
             <th class="px-4 whitespace-nowrap text-nowrap">Responsaveis</th>
             <th class="px-4 whitespace-nowrap text-nowrap">Data início</th>

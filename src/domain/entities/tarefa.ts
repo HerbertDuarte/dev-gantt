@@ -3,13 +3,11 @@ import { StatusTarefa } from '../enum/status-tarefa.enum';
 export class Tarefa {
     nome: string = '';
     responsavel: Reponsavel = new Reponsavel();
-    data_inicio: Date = new Date();
-    data_fim: Date = new Date();
+    dataInicio: Date = new Date();
+    dataFim: Date = new Date();
     status: StatusTarefa = StatusTarefa.NAO_INICIADO;
     id: number = 0;
-    nivel: number = 0;
-    num: number = 0;
-    tarefas_filhas: Tarefa[] = [];
+    marcoId: number = 0;
 
     constructor(data: Partial<Tarefa> = {}) {
         Object.assign(this, data);

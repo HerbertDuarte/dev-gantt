@@ -11,7 +11,7 @@ defineProps<{
 }>();
 
 const devePreencher = (diaDeProjeto: Date, tarefa: Tarefa) => {
-    return diaDeProjeto >= tarefa.data_inicio && diaDeProjeto <= tarefa.data_fim;
+    return diaDeProjeto >= tarefa.dataInicio && diaDeProjeto <= tarefa.dataFim;
 }
 
 const tarefaClass = (diaDeProjeto: Date, tarefa: Tarefa) => {
@@ -29,8 +29,8 @@ const diaClass = (diaDeProjeto: Date, tarefa: Tarefa) => {
 
 
 const roundedClass = (classList: string[], diaDeProjeto: Date, tarefa: Tarefa) => {
-    isSameDay(diaDeProjeto, tarefa.data_inicio) && classList.push("rounded-l-lg")
-    isSameDay(diaDeProjeto, tarefa.data_fim) && classList.push("rounded-r-lg")
+    isSameDay(diaDeProjeto, tarefa.dataInicio) && classList.push("rounded-l-lg")
+    isSameDay(diaDeProjeto, tarefa.dataFim) && classList.push("rounded-r-lg")
 }
 
 const fimSemanaClass = (classList: string[], diaDeProjeto: Date) => {
@@ -43,8 +43,8 @@ const fimSemanaClass = (classList: string[], diaDeProjeto: Date) => {
 
 <template>
     <tr>
-        <td :class="`p-0 ${index % 2 === 0 ? 'bg-gray-100' : 'bg-gray-200'}`"
-            v-for="diaDeProjeto in getListaDias(tarefas[0].data_inicio, tarefas[tarefas.length - 1].data_fim)">
+        <td :class="`p-0 ${index % 2 === 0 ? 'bg-white' : 'bg-gray-100'}`"
+            v-for="diaDeProjeto in getListaDias(tarefas[0].dataInicio, tarefas[tarefas.length - 1].dataFim)">
             <div :class="`h-9 p-0 ${diaClass(diaDeProjeto, tarefa)}`" v-if="!devePreencher(diaDeProjeto, tarefa)" />
             <div v-else :class="`h-7 p-0 bg-${colorClass(tarefa)}/50 ${tarefaClass(diaDeProjeto, tarefa)}`" />
         </td>

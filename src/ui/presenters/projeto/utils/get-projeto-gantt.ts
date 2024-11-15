@@ -10,8 +10,8 @@ import { getListaDias } from '../../gantt/utils/get-lista-dias';
 
 export function getPeriodoGantt(tarefas: Tarefa[]): Periodo {
     const diasProjeto = getListaDias(
-        tarefas[0].data_inicio,
-        tarefas[tarefas.length - 1].data_fim,
+        tarefas[0].dataInicio,
+        tarefas[tarefas.length - 1].dataFim,
     );
 
     const semanas = separarPorSemanas(diasProjeto);
@@ -33,8 +33,8 @@ export function getPeriodoGantt(tarefas: Tarefa[]): Periodo {
 function defineDuracaoProjeto(tarefas: Tarefa[]) {
     return (
         differenceInDays(
-            tarefas[tarefas.length - 1].data_fim,
-            tarefas[0].data_inicio,
+            tarefas[tarefas.length - 1].dataFim,
+            tarefas[0].dataInicio,
         ) + 1
     );
 }

@@ -1,6 +1,6 @@
 <template>
     <thead class="uppercase sticky top-0 z-10">
-        <tr class="bg-gray-100 h-9">
+        <tr class="bg-white h-9">
             <th class="outline-r" v-if="periodo.diasDaPrimeiraSemana > 0"
                 :colspan="getColSpan(periodo.diasDaPrimeiraSemana)">
                 início
@@ -12,7 +12,7 @@
                 fim
             </th>
         </tr>
-        <tr class="bg-gray-200 h-10">
+        <tr class="bg-gray-100 h-10">
             <th :class="`outline-x outline-white min-w-[40px] ${fixDiaInicialFinalClass(index)}`"
                 v-if="periodo.duracaoProjetoExibicao > 0" :key="index" v-for="(day, index) in periodo.dias">
                 <div :class="`flex flex-col ${fimSemanaClass(day)}`">
@@ -43,7 +43,7 @@ function getColSpan(value: number) {
 
 const fimSemanaClass = (day: Date) => {
     if (isSunday(day) || isSaturday(day)) {
-        return "bg-slate-300/70 text-slate-800"
+        return "bg-slate-200/70 text-slate-800"
     }
 }
 

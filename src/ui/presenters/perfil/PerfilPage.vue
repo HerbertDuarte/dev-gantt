@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { useAuthStore } from '../../../../infrastructure/store/auth-store';
 import { storeToRefs } from 'pinia';
+import { useAuthStore } from '../../../infrastructure/store/auth-store';
+import { UsuarioNivel } from '../../../domain/enum/usuario-nivel.enum';
+import FormUpdatePerfil from './components/FormUpdatePerfil.vue';
 
-import FormUpdatePerfil from './FormUpdatePerfil.vue';
-import { UsuarioNivel } from '../../../../domain/enum/usuario-nivel.enum';
 
 const { user } = storeToRefs(useAuthStore());
 

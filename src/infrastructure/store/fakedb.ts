@@ -158,3 +158,30 @@ export const fakeMarcos: Marco[] = [
     { nome: 'Marco 2', id: 2, tarefas: getTarefas(2) },
     { nome: 'Marco 3', id: 3, tarefas: getTarefas(3) },
 ];
+
+export const responsaveis = [
+    {
+        imageUrl:
+            'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541',
+        id: 1,
+        nome: 'João',
+    },
+    {
+        imageUrl:
+            'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541',
+        id: 2,
+        nome: 'Maria',
+    },
+    {
+        imageUrl:
+            'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541',
+        id: 3,
+        nome: 'José',
+    },
+    {
+        imageUrl:
+            'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541',
+        id: 4,
+        nome: 'Maria',
+    },
+];

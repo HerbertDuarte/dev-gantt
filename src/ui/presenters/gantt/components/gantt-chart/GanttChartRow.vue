@@ -35,7 +35,7 @@ const roundedClass = (classList: string[], diaDeProjeto: Date, tarefa: Tarefa) =
 
 const fimSemanaClass = (classList: string[], diaDeProjeto: Date) => {
     if (isSunday(diaDeProjeto)) {
-        classList.push("border-l-2 border-white/20")
+        classList.push("border-l-2 border-zinc-200/20")
     }
 }
 

@@ -6,31 +6,9 @@ import GanttLeftRow from './GanttLeftRow.vue';
 import { useProjetoStore } from '../../../../../infrastructure/store/projeto.store';
 import { useGanttStore } from '../../../../../infrastructure/store/gantt.store';
 import { Tarefa } from '../../../../../domain/entities/tarefa';
+import { responsaveis } from '../../../../../infrastructure/store/fakedb';
 
 
-const responsaveis = [
-    {
-        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541",
-        id: 1,
-        nome: 'João'
-    },
-    {
-        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541",
-        id: 2,
-        nome: 'Maria'
-    },
-    {
-        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541",
-        id: 3,
-        nome: 'José'
-    },
-    {
-        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541",
-        id: 4,
-        nome: 'Maria'
-    },
-
-]
 
 const reduzParaDois = (arr: any[]) => arr.slice(0, 2)
 const possuiMaisDeDois = (arr: any[]) => arr.length > 2

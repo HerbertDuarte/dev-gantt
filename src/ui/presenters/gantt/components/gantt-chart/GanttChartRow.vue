@@ -3,10 +3,12 @@ import { isSameDay, isSaturday, isSunday } from 'date-fns';
 import { getListaDias } from '../../utils/get-lista-dias';
 import { colorClass } from '../../utils/color-class';
 import { Tarefa } from '../../../../../domain/entities/tarefa';
+import { asTarefa, asTarefas, Ganttable, isMarco, isTarefa } from '../../../../../domain/aggregates/ganttable';
+import GanttChartMarcoRow from './rows/GanttChartMarcoRow.vue';
 
 defineProps<{
-    tarefa: Tarefa,
-    tarefas: Tarefa[],
+    ganttable: Ganttable,
+    ganttables: Ganttable[],
     index: number
 }>();
 
@@ -42,11 +44,17 @@ const fimSemanaClass = (classList: string[], diaDeProjeto: Date) => {
 </script>
 
 <template>
-    <tr>
-        <td :class="`p-0 ${index % 2 === 0 ? 'bg-white' : 'bg-gray-100'}`"
-            v-for="diaDeProjeto in getListaDias(tarefas[0].dataInicio, tarefas[tarefas.length - 1].dataFim)">
-            <div :class="`h-9 p-0 ${diaClass(diaDeProjeto, tarefa)}`" v-if="!devePreencher(diaDeProjeto, tarefa)" />
-            <div v-else :class="`h-7 p-0 bg-${colorClass(tarefa)}/50 ${tarefaClass(diaDeProjeto, tarefa)}`" />
+    <tr v-if="isTarefa(ganttable)" class="p-0">
+        <td :class="`h-gantt-row p-0 ${index % 2 === 0 ? 'bg-white' : 'bg-gray-100'}`" v-for="diaDeProjeto in
+            getListaDias(asTarefas(ganttables)[0].dataInicio,
+                asTarefas(ganttables)[asTarefas(ganttables).length - 1].dataFim)">
+            <div :class="`h-full ${diaClass(diaDeProjeto, asTarefa(ganttable))}`"
+                v-if="!devePreencher(diaDeProjeto, asTarefa(ganttable))" />
+            <div v-else
+                :class="`h-full bg-${colorClass(asTarefa(ganttable))}/50 ${tarefaClass(diaDeProjeto, asTarefa(ganttable))}`" />
         </td>
     </tr>
+
+
+    <GanttChartMarcoRow :ganttable="ganttable" :ganttables="ganttables" :index="index" v-if="isMarco(ganttable)" />
 </template>

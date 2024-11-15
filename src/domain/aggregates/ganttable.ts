@@ -1,22 +1,36 @@
-import { Marco } from './marco';
-import { Tarefa } from './tarefa';
+import { Marco } from '../entities/marco';
+import { Tarefa } from '../entities/tarefa';
 
 export type Ganttable = Tarefa | Marco;
 
-export class GanttableUtils {
-    static isTarefa(ganttable: Ganttable): boolean {
-        return (ganttable as Tarefa).marcoId !== undefined;
-    }
+export function isTarefa(ganttable: Ganttable): boolean {
+    return (ganttable as Tarefa).marcoId !== undefined;
+}
 
-    static isMarco(ganttable: Ganttable): boolean {
-        return (ganttable as Marco).tarefas !== undefined;
-    }
+export function isMarco(ganttable: Ganttable): boolean {
+    return (ganttable as Marco).tarefas !== undefined;
+}
 
-    static tarefas(ganttables: Ganttable[]) {
-        return ganttables.filter(GanttableUtils.isTarefa) as Tarefa[];
-    }
+export function tarefas(ganttables: Ganttable[]) {
+    return ganttables.filter(isTarefa) as Tarefa[];
+}
 
-    static marcos(ganttables: Ganttable[]) {
-        return ganttables.filter(GanttableUtils.isMarco) as Marco[];
-    }
+export function marcos(ganttables: Ganttable[]) {
+    return ganttables.filter(isMarco) as Marco[];
+}
+
+export function asTarefa(ganttable: Ganttable): Tarefa {
+    return ganttable as Tarefa;
+}
+
+export function asMarco(ganttable: Ganttable): Marco {
+    return ganttable as Marco;
+}
+
+export function asTarefas(ganttables: Ganttable[]): Tarefa[] {
+    return tarefas(ganttables);
+}
+
+export function asMarcos(ganttables: Ganttable[]): Marco[] {
+    return marcos(ganttables);
 }

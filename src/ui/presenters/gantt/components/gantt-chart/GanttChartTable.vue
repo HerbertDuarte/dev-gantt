@@ -4,7 +4,7 @@ import { useGanttStore } from '../../../../../infrastructure/store/gantt.store';
 import GanttChartRow from './GanttChartRow.vue';
 import GanttChartTableHead from './GanttChartTableHead.vue';
 const ganttStore = useGanttStore();
-const { tarefas } = storeToRefs(ganttStore)
+const { ganttables } = storeToRefs(ganttStore)
 
 </script>
 
@@ -12,8 +12,8 @@ const { tarefas } = storeToRefs(ganttStore)
     <table>
         <GanttChartTableHead />
         <tbody>
-            <GanttChartRow :key="tarefaIndex" v-for="(tarefa, tarefaIndex) in tarefas" :index="tarefaIndex"
-                :tarefa="tarefa" :tarefas="tarefas" />
+            <GanttChartRow :key="index" v-for="(ganttable, index) in ganttables" :index="index" :ganttable="ganttable"
+                :ganttables="ganttables" />
 
         </tbody>
     </table>

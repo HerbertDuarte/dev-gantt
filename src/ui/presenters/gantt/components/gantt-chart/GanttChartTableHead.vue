@@ -1,6 +1,6 @@
 <template>
     <thead class="uppercase sticky top-0 z-10">
-        <tr class="bg-white h-9">
+        <tr class="bg-white h-gantt-row">
             <th class="outline-r" v-if="periodo.diasDaPrimeiraSemana > 0"
                 :colspan="getColSpan(periodo.diasDaPrimeiraSemana)">
                 início

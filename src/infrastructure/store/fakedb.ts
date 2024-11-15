@@ -15,7 +15,7 @@ export const fakeTarefas = [
         responsavel: { nome: 'Responsável 1' },
         dataInicio: parseISO('2025-10-01'),
         dataFim: parseISO('2025-10-05'),
-        marcoId: 1,
+        marcoId: 0,
         status: StatusTarefa.CONCLUIDO_ATRASO,
         id: 1,
     },
@@ -24,7 +24,7 @@ export const fakeTarefas = [
         responsavel: { nome: 'Responsável 1' },
         dataInicio: parseISO('2025-10-03'),
         dataFim: parseISO('2025-10-05'),
-        marcoId: 1,
+        marcoId: 0,
         status: StatusTarefa.CONCLUIDO,
         id: 2,
     },
@@ -33,7 +33,7 @@ export const fakeTarefas = [
         responsavel: { nome: 'Responsável 1' },
         dataInicio: parseISO('2025-10-06'),
         dataFim: parseISO('2025-10-10'),
-        marcoId: 1,
+        marcoId: 0,
         status: StatusTarefa.EM_ANDAMENTO,
         id: 3,
     },
@@ -42,7 +42,7 @@ export const fakeTarefas = [
         responsavel: { nome: 'Responsável 1' },
         dataInicio: parseISO('2025-10-09'),
         dataFim: parseISO('2025-10-10'),
-        marcoId: 1,
+        marcoId: 0,
         status: StatusTarefa.EM_ANDAMENTO,
         id: 3,
     },
@@ -51,7 +51,7 @@ export const fakeTarefas = [
         responsavel: { nome: 'Responsável 1' },
         dataInicio: parseISO('2025-10-11'),
         dataFim: parseISO('2025-10-15'),
-        marcoId: 1,
+        marcoId: 0,
         status: StatusTarefa.PENDENTE,
         id: 4,
     },
@@ -60,7 +60,7 @@ export const fakeTarefas = [
         responsavel: { nome: 'Responsável 1' },
         dataInicio: parseISO('2025-10-16'),
         dataFim: parseISO('2025-10-16'),
-        marcoId: 2,
+        marcoId: 0,
         status: StatusTarefa.NAO_INICIADO,
         id: 5,
     },
@@ -69,7 +69,7 @@ export const fakeTarefas = [
         responsavel: { nome: 'Responsável 1' },
         dataInicio: parseISO('2025-10-10'),
         dataFim: parseISO('2025-10-16'),
-        marcoId: 2,
+        marcoId: 0,
         status: StatusTarefa.CONCLUIDO,
         id: 5,
     },
@@ -78,7 +78,7 @@ export const fakeTarefas = [
         responsavel: { nome: 'Responsável 1' },
         dataInicio: parseISO('2025-10-12'),
         dataFim: parseISO('2025-10-16'),
-        marcoId: 2,
+        marcoId: 0,
         status: StatusTarefa.CONCLUIDO_ATRASO,
         id: 5,
     },
@@ -87,7 +87,7 @@ export const fakeTarefas = [
         responsavel: { nome: 'Responsável 1' },
         dataInicio: parseISO('2025-10-17'),
         dataFim: parseISO('2025-10-25'),
-        marcoId: 2,
+        marcoId: 0,
         status: StatusTarefa.NAO_INICIADO,
         id: 5,
     },
@@ -96,27 +96,75 @@ export const fakeTarefas = [
         responsavel: { nome: 'Responsável 1' },
         dataInicio: parseISO('2025-10-26'),
         dataFim: parseISO('2025-10-29'),
-        marcoId: 3,
+        marcoId: 0,
         status: StatusTarefa.PENDENTE,
         id: 5,
     },
     {
-        nome: 'Tarefa 8',
+        nome: 'Tarefa 8 com nome muito grande7',
         responsavel: { nome: 'Responsável 1' },
         dataInicio: parseISO('2025-10-30'),
         dataFim: parseISO('2025-11-05'),
-        marcoId: 3,
+        marcoId: 0,
         status: StatusTarefa.EM_ANDAMENTO,
         id: 5,
     },
     {
-        nome: 'Tarefa 9',
+        nome: 'Tarefa 9 com nome muito grande7',
         responsavel: { nome: 'Responsável 1' },
         dataInicio: parseISO('2025-11-06'),
         dataFim: parseISO('2025-11-09'),
-        marcoId: 3,
+        marcoId: 0,
         status: StatusTarefa.CONCLUIDO_ATRASO,
         id: 5,
+    },
+];
+
+export const fakeTarefas2 = [
+    {
+        nome: 'Tarefa com nome muito grande 1',
+        responsavel: { nome: 'Responsável 1' },
+        dataInicio: parseISO('2025-11-12'),
+        dataFim: parseISO('2025-11-16'),
+        marcoId: 0,
+        status: StatusTarefa.CONCLUIDO_ATRASO,
+        id: 1,
+    },
+    {
+        nome: 'Tarefa com nome muito grande2',
+        responsavel: { nome: 'Responsável 1' },
+        dataInicio: parseISO('2025-11-14'),
+        dataFim: parseISO('2025-11-16'),
+        marcoId: 0,
+        status: StatusTarefa.CONCLUIDO,
+        id: 2,
+    },
+    {
+        nome: 'Tarefa com nome muito grande3',
+        responsavel: { nome: 'Responsável 1' },
+        dataInicio: parseISO('2025-11-17'),
+        dataFim: parseISO('2025-11-21'),
+        marcoId: 0,
+        status: StatusTarefa.EM_ANDAMENTO,
+        id: 3,
+    },
+    {
+        nome: 'Tarefa com nome muito grande3',
+        responsavel: { nome: 'Responsável 1' },
+        dataInicio: parseISO('2025-11-22'),
+        dataFim: parseISO('2025-11-30'),
+        marcoId: 0,
+        status: StatusTarefa.EM_ANDAMENTO,
+        id: 3,
+    },
+    {
+        nome: 'Tarefa com nome muito grande4',
+        responsavel: { nome: 'Responsável 1' },
+        dataInicio: parseISO('2025-12-01'),
+        dataFim: parseISO('2025-12-10'),
+        marcoId: 0,
+        status: StatusTarefa.PENDENTE,
+        id: 4,
     },
 ];
 
@@ -125,7 +173,7 @@ export const fakeProjetos = [
         id: '1',
         nome: 'Desenvolvimento de Software',
         descricao: 'Descrição do projeto 1',
-        marcoId: 1,
+        marcoId: 0,
         status: 'andamento',
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -134,7 +182,7 @@ export const fakeProjetos = [
         id: '2',
         nome: 'Projeto 2',
         descricao: 'Descrição do projeto 2',
-        marcoId: 1,
+        marcoId: 0,
         status: 'andamento',
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -143,7 +191,7 @@ export const fakeProjetos = [
         id: '3',
         nome: 'Projeto 3',
         descricao: 'Descrição do projeto 3',
-        marcoId: 1,
+        marcoId: 0,
         status: 'andamento',
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -151,12 +199,22 @@ export const fakeProjetos = [
 ];
 
 const getTarefas = (id: number): Tarefa[] =>
-    fakeTarefas.filter((tarefa) => tarefa.marcoId === id);
+    fakeTarefas.map((tarefa) => {
+        tarefa.marcoId = id;
+        return new Tarefa(tarefa);
+    });
+
+const getTarefas2 = (id: number): Tarefa[] =>
+    fakeTarefas2.map((tarefa) => {
+        tarefa.marcoId = id;
+        return new Tarefa(tarefa);
+    });
 
 export const fakeMarcos: Marco[] = [
     { nome: 'Marco 1', id: 1, tarefas: getTarefas(1) },
     { nome: 'Marco 2', id: 2, tarefas: getTarefas(2) },
-    { nome: 'Marco 3', id: 3, tarefas: getTarefas(3) },
+    { nome: 'Marco 3', id: 2, tarefas: getTarefas2(3) },
+    { nome: 'Marco 4', id: 2, tarefas: getTarefas2(4) },
 ];
 
 export const responsaveis = [

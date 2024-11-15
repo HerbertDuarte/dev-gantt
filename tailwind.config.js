@@ -6,6 +6,7 @@ export default {
         extend: {
             height: {
                 content: 'calc(100dvh - 160px)', // Define a altura personalizada
+                'gantt-row': '30px',
             },
             minHeight: {
                 content: 'calc(100dvh - 160px)',

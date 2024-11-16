@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { format } from 'date-fns';
-import { asTarefa, Ganttable, isMarco, isTarefa } from '../../../../../../domain/aggregates/ganttable';
+import { asMarco, asTarefa, Ganttable, isMarco, isTarefa } from '../../../../../../domain/aggregates/ganttable';
 
 import GanttLeftRow from '../GanttLeftRow.vue';
 
@@ -16,15 +16,20 @@ defineProps<{
 
 <template>
     <GanttLeftRow :ganttable="ganttable" v-if="isTarefa(ganttable)" :index="index" class="text-center">
-        <div v-if="dataInicio" class="bg-slate-300 rounded-full text-slate-700 w-fit px-2.5 mx-auto">
+        <div v-if="dataInicio" class="bg-slate-200 rounded-full text-slate-700 w-fit px-2.5 mx-auto">
             {{ format(asTarefa(ganttable).dataInicio, "dd/MM/yyyy") }}
         </div>
-        <div v-else-if="dataFim" class="bg-slate-300 rounded-full text-slate-700 w-fit px-2.5 mx-auto">
+        <div v-else-if="dataFim" class="bg-slate-200 rounded-full text-slate-700 w-fit px-2.5 mx-auto">
             {{ format(asTarefa(ganttable).dataFim, "dd/MM/yyyy") }}
         </div>
     </GanttLeftRow>
 
     <GanttLeftRow :ganttable="ganttable" v-if="isMarco(ganttable)" :index="index" class="text-center">
-        <span>-</span>
+        <div v-if="dataInicio" class="bg-slate-400/60 rounded-full text-slate-700 w-fit px-2.5 mx-auto">
+            {{ format(asMarco(ganttable).tarefas[0].dataInicio, "dd/MM/yyyy") }}
+        </div>
+        <div v-else-if="dataFim" class="bg-slate-400/60 rounded-full text-slate-700 w-fit px-2.5 mx-auto">
+            {{ format(asMarco(ganttable).tarefas[asMarco(ganttable).tarefas.length - 1].dataFim, "dd/MM/yyyy") }}
+        </div>
     </GanttLeftRow>
 </template>

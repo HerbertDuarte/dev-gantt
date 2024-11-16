@@ -6,7 +6,7 @@ export default {
         extend: {
             height: {
                 content: 'calc(100dvh - 160px)', // Define a altura personalizada
-                'gantt-row': '30px',
+                'gantt-row': '36px',
             },
             minHeight: {
                 content: 'calc(100dvh - 160px)',
@@ -25,6 +25,8 @@ export default {
         'bg-gray-400/50',
         'rounded-l-lg',
         'rounded-r-lg',
+        'rounded-l-sm',
+        'rounded-r-sm',
         'border-l-0',
         'border-r-0',
         'bg-gray-400',

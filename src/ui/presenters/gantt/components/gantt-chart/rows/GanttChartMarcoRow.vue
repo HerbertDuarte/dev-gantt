@@ -22,8 +22,8 @@ const roundedClass = (diaDeProjeto: Date) => {
     const marco = asMarco(props.ganttable);
     const tarefaInicial = marco.tarefas[0];
     const tarefaFinal = marco.tarefas[marco.tarefas.length - 1];
-    isSameDay(diaDeProjeto, tarefaInicial.dataInicio) && classList.push("rounded-l")
-    isSameDay(diaDeProjeto, tarefaFinal.dataFim) && classList.push("rounded-r")
+    isSameDay(diaDeProjeto, tarefaInicial.dataInicio) && classList.push("rounded-l-sm")
+    isSameDay(diaDeProjeto, tarefaFinal.dataFim) && classList.push("rounded-r-sm")
     return classList.join(" ")
 }
 
@@ -31,7 +31,7 @@ const roundedClass = (diaDeProjeto: Date) => {
 
 <template>
     <tr v-if="isMarco(ganttable)" class="p-0">
-        <td :class="`h-gantt-row p-0 ${index % 2 === 0 ? 'bg-white' : 'bg-gray-100'}`" v-for="diaDeProjeto in
+        <td :class="`h-gantt-row py-1 p-0 ${index % 2 === 0 ? 'bg-white' : 'bg-gray-100'}`" v-for="diaDeProjeto in
             getListaDias(asTarefas(ganttables)[0].dataInicio,
                 asTarefas(ganttables)[asTarefas(ganttables).length - 1].dataFim)">
 

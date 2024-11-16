@@ -1,30 +1,3 @@
-<template>
-    <thead class="uppercase sticky top-0 z-10">
-        <tr class="bg-white h-gantt-row">
-            <th class="outline-r" v-if="periodo.diasDaPrimeiraSemana > 0"
-                :colspan="getColSpan(periodo.diasDaPrimeiraSemana)">
-                início
-            </th>
-            <th class="outline-x" :key="week" v-for="week in periodo.qtdSemanasInteiras" colspan="7">
-                semana {{ week }}
-            </th>
-            <th v-if="periodo.diasDaUltimaSemana > 0" :colspan="getColSpan(periodo.diasDaUltimaSemana)">
-                fim
-            </th>
-        </tr>
-        <tr class="bg-gray-100 h-10">
-            <th :class="`outline-x outline-white min-w-[40px] ${fixDiaInicialFinalClass(index)}`"
-                v-if="periodo.duracaoProjetoExibicao > 0" :key="index" v-for="(day, index) in periodo.dias">
-                <div :class="`flex flex-col ${fimSemanaClass(day)}`">
-                    <span>{{ (day.getDate()).toString().padStart(2, '0') }}</span>
-                    <span>{{ obterSiglaDia(day) }}</span>
-                </div>
-
-            </th>
-        </tr>
-    </thead>
-</template>
-
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
 import { useGanttStore } from '../../../../../infrastructure/store/gantt.store';
@@ -65,3 +38,30 @@ onMounted(() => {
 });
 
 </script>
+
+<template>
+    <thead class="uppercase sticky top-0 z-10">
+        <tr class="bg-white h-gantt-row">
+            <th class="outline-r" v-if="periodo.diasDaPrimeiraSemana > 0"
+                :colspan="getColSpan(periodo.diasDaPrimeiraSemana)">
+                início
+            </th>
+            <th class="outline-x" :key="week" v-for="week in periodo.qtdSemanasInteiras" colspan="7">
+                semana {{ week }}
+            </th>
+            <th v-if="periodo.diasDaUltimaSemana > 0" :colspan="getColSpan(periodo.diasDaUltimaSemana)">
+                fim
+            </th>
+        </tr>
+        <tr class="bg-gray-100 h-10">
+            <th :class="`outline-x outline-white min-w-[40px] ${fixDiaInicialFinalClass(index)}`"
+                v-if="periodo.duracaoProjetoExibicao > 0" :key="index" v-for="(day, index) in periodo.dias">
+                <div :class="`flex flex-col ${fimSemanaClass(day)}`">
+                    <span>{{ (day.getDate()).toString().padStart(2, '0') }}</span>
+                    <span>{{ obterSiglaDia(day) }}</span>
+                </div>
+
+            </th>
+        </tr>
+    </thead>
+</template>

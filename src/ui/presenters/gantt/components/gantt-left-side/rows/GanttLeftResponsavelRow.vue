@@ -23,6 +23,6 @@ const possuiMaisDeDois = (arr: any[]) => arr.length > 2
     </GanttLeftRow>
 
     <GanttLeftRow :ganttable="ganttable" v-if="isMarco(ganttable)" :index="index" class="text-center">
-        <span>-</span>
+
     </GanttLeftRow>
 </template>

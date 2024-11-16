@@ -5,6 +5,7 @@ import { colorClass } from '../../utils/color-class';
 import { Tarefa } from '../../../../../domain/entities/tarefa';
 import { asTarefa, asTarefas, Ganttable, isMarco, isTarefa } from '../../../../../domain/aggregates/ganttable';
 import GanttChartMarcoRow from './rows/GanttChartMarcoRow.vue';
+import GanttChartTarefaRow from './rows/GanttChartTarefaRow.vue';
 
 defineProps<{
     ganttable: Ganttable,
@@ -44,17 +45,6 @@ const fimSemanaClass = (classList: string[], diaDeProjeto: Date) => {
 </script>
 
 <template>
-    <tr v-if="isTarefa(ganttable)" class="p-0">
-        <td :class="`h-gantt-row p-0 ${index % 2 === 0 ? 'bg-white' : 'bg-gray-100'}`" v-for="diaDeProjeto in
-            getListaDias(asTarefas(ganttables)[0].dataInicio,
-                asTarefas(ganttables)[asTarefas(ganttables).length - 1].dataFim)">
-            <div :class="`h-full ${diaClass(diaDeProjeto, asTarefa(ganttable))}`"
-                v-if="!devePreencher(diaDeProjeto, asTarefa(ganttable))" />
-            <div v-else
-                :class="`h-full bg-${colorClass(asTarefa(ganttable))}/50 ${tarefaClass(diaDeProjeto, asTarefa(ganttable))}`" />
-        </td>
-    </tr>
-
-
+    <GanttChartTarefaRow :ganttable="ganttable" :ganttables="ganttables" :index="index" v-if="isTarefa(ganttable)" />
     <GanttChartMarcoRow :ganttable="ganttable" :ganttables="ganttables" :index="index" v-if="isMarco(ganttable)" />
 </template>

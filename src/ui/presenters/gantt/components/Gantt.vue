@@ -45,6 +45,6 @@ function syncScroll(source: string) {
 }
 
 .main-container {
-    @apply flex justify-start h-content;
+    @apply flex justify-start max-h-content;
 }
 </style>

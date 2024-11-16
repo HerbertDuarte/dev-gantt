@@ -10,12 +10,12 @@ defineProps<{
 </script>
 
 <template>
-    <GanttLeftRow :ganttable="ganttable" :index="index" class="text-left">
-        <p v-if="isTarefa(ganttable)" class="pl-8">
+    <GanttLeftRow :ganttable="ganttable" :index="index">
+        <p v-if="isTarefa(ganttable)" class="pl-10 !text-left">
             {{ ganttable.nome }}
         </p>
 
-        <p v-if="isMarco(ganttable)" class="pl-6">
+        <p v-if="isMarco(ganttable)" class="pl-4 !text-left text-bold text-zinc-800">
             {{ ganttable.nome }}
         </p>
     </GanttLeftRow>

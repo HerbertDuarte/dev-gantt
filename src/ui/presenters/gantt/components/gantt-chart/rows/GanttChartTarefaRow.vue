@@ -1,55 +1,34 @@
 <script setup lang="ts">
-import { isSameDay, isSunday } from 'date-fns';
+import { isSameDay, isSaturday, isSunday } from 'date-fns';
 import { asTarefa, asTarefas, Ganttable, isMarco, isTarefa } from '../../../../../../domain/aggregates/ganttable';
 import { Tarefa } from '../../../../../../domain/entities/tarefa';
 import { getListaDias } from '../../../utils/get-lista-dias';
-import { colorClass } from '../../../utils/color-class';
-
-
-const props = defineProps<{
+import { colorClass } from '../../../stylesheets/color-class';
+import { ganttBorder } from '../../../stylesheets/gantt-border-class';
+import { roundedClass } from '../../../stylesheets/gantt-rounded-class';
+import { isPrimeiroDiaPreenchidoClass } from '../../../stylesheets/primeiro-dia-border-class';
+import { devePreencherTarefa } from '../../../stylesheets/deve-preencher';
+defineProps<{
     ganttable: Ganttable,
     ganttables: Ganttable[],
     index: number
 }>();
 
-const devePreencher = (diaDeProjeto: Date) => {
-    return diaDeProjeto >= asTarefa(props.ganttable).dataInicio && diaDeProjeto <= asTarefa(props.ganttable).dataFim;
-}
-
-const tarefaClass = (diaDeProjeto: Date) => {
-    const classList: string[] = []
-    roundedClass(classList, diaDeProjeto, asTarefa(props.ganttable))
-    fimSemanaClass(classList, diaDeProjeto)
-    return classList.join(" ")
-}
-
-const diaClass = (diaDeProjeto: Date) => {
-    const classList: string[] = []
-    fimSemanaClass(classList, diaDeProjeto)
-    return classList.join(" ")
-}
-
-
-const roundedClass = (classList: string[], diaDeProjeto: Date, tarefa: Tarefa) => {
-    isSameDay(diaDeProjeto, tarefa.dataInicio) && classList.push("rounded-l-lg")
-    isSameDay(diaDeProjeto, tarefa.dataFim) && classList.push("rounded-r-lg")
-}
-
-const fimSemanaClass = (classList: string[], diaDeProjeto: Date) => {
-    if (isSunday(diaDeProjeto)) {
-        classList.push("")
-    }
-}
-
 </script>
 
 <template>
-    <tr class="p-0">
-        <td :class="`h-gantt-row py-1 p-0 ${index % 2 === 0 ? 'bg-white' : 'bg-gray-100'}`" v-for="diaDeProjeto in
+    <tr class="p-0" clickable>
+        <td :class="`h-gantt-row p-0 ${index % 2 === 0 ? 'bg-white' : 'bg-gray-100'}`" v-for="diaDeProjeto in
             getListaDias(asTarefas(ganttables)[0].dataInicio,
                 asTarefas(ganttables)[asTarefas(ganttables).length - 1].dataFim)">
-            <div :class="`h-full ${diaClass(diaDeProjeto)}`" v-if="!devePreencher(diaDeProjeto)" />
-            <div v-else :class="`h-full mx-px bg-${colorClass(asTarefa(ganttable))}/50 ${tarefaClass(diaDeProjeto)}`" />
+
+            <div v-if="devePreencherTarefa(diaDeProjeto, ganttable)"
+                :class="`h-full py-1 ${isPrimeiroDiaPreenchidoClass(diaDeProjeto, ganttable)}`">
+                <div
+                    :class="`h-full mx-px bg-${colorClass(asTarefa(ganttable))}/50 ${roundedClass(diaDeProjeto, ganttable)}`" />
+            </div>
+            <div :class="`h-full border-l ${ganttBorder(diaDeProjeto)}`" v-else />
+
         </td>
     </tr>
 </template>

@@ -206,6 +206,8 @@ export const fakeMarcos: Marco[] = [
     { nome: 'Planejamento Inicial', id: 1, tarefas: getTarefas(1) },
     { nome: 'Desenvolvimento Backend', id: 2, tarefas: getTarefas2(2) },
     { nome: 'Finalização e Testes', id: 3, tarefas: getTarefas3(3) },
+    { nome: 'Finalização e Testes', id: 4, tarefas: getTarefas3(4) },
+    { nome: 'Finalização e Testes', id: 5, tarefas: getTarefas3(5) },
 ];
 
 export const responsaveis = [

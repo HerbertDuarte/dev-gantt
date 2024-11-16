@@ -18,16 +18,16 @@ defineProps<{
 
 <template>
     <tr class="p-0" clickable>
-        <td :class="`h-gantt-row p-0 ${index % 2 === 0 ? 'bg-white' : 'bg-gray-100'}`" v-for="diaDeProjeto in
+        <td :class="` h-gantt-row p-0 ${index % 2 === 0 ? 'bg-white' : 'bg-gray-100'}`" v-for="diaDeProjeto in
             getListaDias(asTarefas(ganttables)[0].dataInicio,
                 asTarefas(ganttables)[asTarefas(ganttables).length - 1].dataFim)">
 
             <div v-if="devePreencherTarefa(diaDeProjeto, ganttable)"
                 :class="`h-full py-1 ${isPrimeiroDiaPreenchidoClass(diaDeProjeto, ganttable)}`">
                 <div
-                    :class="`h-full mx-px bg-${colorClass(asTarefa(ganttable))}/50 ${roundedClass(diaDeProjeto, ganttable)}`" />
+                    :class="`h-full bg-${colorClass(asTarefa(ganttable))}/50 ${roundedClass(diaDeProjeto, ganttable)}`" />
             </div>
-            <div :class="`h-full border-l ${ganttBorder(diaDeProjeto)}`" v-else />
+            <div :class="`h-full ${ganttBorder(diaDeProjeto)}`" v-else />
 
         </td>
     </tr>

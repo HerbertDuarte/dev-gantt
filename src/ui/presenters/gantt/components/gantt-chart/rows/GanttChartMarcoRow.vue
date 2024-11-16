@@ -25,7 +25,7 @@ defineProps<{
                 :class="`py-1 h-full ${isPrimeiroDiaPreenchidoClass(diaDeProjeto, ganttable)}`">
                 <div :class="`h-full bg-black/60 ${roundedClass(diaDeProjeto, ganttable)}`" />
             </div>
-            <div v-else :class="`h-full border-l ${ganttBorder(diaDeProjeto)}`" />
+            <div v-else :class="`h-full ${ganttBorder(diaDeProjeto)}`" />
         </td>
     </tr>
 </template>

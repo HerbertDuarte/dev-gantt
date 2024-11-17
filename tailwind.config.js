@@ -29,7 +29,8 @@ export default {
         'rounded-r-sm',
         'border-l-0',
         'border-r-0',
-        'bg-gray-400',
-        'border-slate-200/20',
+        'bg-slate-400',
+        'border-l',
+        'border-slate-200/40',
     ],
 };

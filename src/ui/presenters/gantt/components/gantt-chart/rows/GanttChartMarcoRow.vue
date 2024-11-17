@@ -18,7 +18,7 @@ defineProps<{
 
 <template>
     <tr v-if="isMarco(ganttable)" class="p-0">
-        <td :class="`h-gantt-row  p-0 ${index % 2 === 0 ? 'bg-white' : 'bg-gray-100'}`" v-for="diaDeProjeto in
+        <td :class="`h-gantt-row  p-0 ${index % 2 === 0 ? 'bg-white' : 'bg-slate-100'}`" v-for="diaDeProjeto in
             getListaDias(asTarefas(ganttables)[0].dataInicio,
                 asTarefas(ganttables)[asTarefas(ganttables).length - 1].dataFim)">
             <div v-if="devePreencherMarco(diaDeProjeto, ganttable)"

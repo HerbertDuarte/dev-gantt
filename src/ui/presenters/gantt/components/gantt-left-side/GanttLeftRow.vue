@@ -9,11 +9,11 @@ defineProps<{
 
 <template>
     <td v-if="isTarefa(ganttable)"
-        :class="`p-0 h-gantt-row whitespace-nowrap text-nowrap text-center mx-auto ${index % 2 === 0 ? 'bg-white' : 'bg-gray-100'}`">
+        :class="`p-0 h-gantt-row whitespace-nowrap text-nowrap text-center mx-auto ${index % 2 === 0 ? 'bg-white' : 'bg-slate-100'}`">
         <slot />
     </td>
     <td v-if="isMarco(ganttable)"
-        :class="`p-0 h-gantt-row whitespace-nowrap text-nowrap text-center mx-auto ${index % 2 === 0 ? 'bg-white' : 'bg-gray-100'}`">
+        :class="`p-0 h-gantt-row whitespace-nowrap text-nowrap text-center mx-auto ${index % 2 === 0 ? 'bg-white' : 'bg-slate-100'}`">
         <slot />
     </td>
 </template>

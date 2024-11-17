@@ -41,7 +41,7 @@ onMounted(() => {
                 fim
             </th>
         </tr>
-        <tr class="bg-gray-100 h-10">
+        <tr class="bg-slate-100 h-10">
             <th :class="`min-w-[40px] custom-outline`" v-if="periodo.duracaoProjetoExibicao > 0" :key="index"
                 v-for="(day, index) in periodo.dias">
                 <div :class="`flex flex-col ${fimSemanaClass(day)}`">
@@ -55,6 +55,6 @@ onMounted(() => {
 </template>
 <style scoped>
 .custom-outline {
-    @apply outline outline-[1px] outline-gray-50;
+    @apply outline outline-[1px] outline-slate-50;
 }
 </style>

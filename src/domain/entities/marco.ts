@@ -1,8 +1,8 @@
 import { Tarefa } from './tarefa';
 
 export class Marco {
-    nome: string = '';
     id: number = 0;
+    nome: string = '';
     tarefas: Tarefa[] = [];
 
     constructor(data: Partial<Marco> = {}) {

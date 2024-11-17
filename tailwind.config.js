@@ -30,6 +30,6 @@ export default {
         'border-l-0',
         'border-r-0',
         'bg-gray-400',
-        'border-zinc-200/20',
+        'border-slate-200/20',
     ],
 };

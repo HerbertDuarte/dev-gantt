@@ -2,23 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
-.cti-input {
-    @apply bg-slate-100 px-4 rounded max-h-12;
+.cti-input .q-field__inner {
+    @apply bg-slate-100 rounded px-2;
+}
+
+.cti-input input {
+    @apply p-2;
 }
 .cti-textarea {
     @apply bg-slate-100 px-4 rounded;
 }
 
 .cti-input-bold {
-    @apply bg-slate-200 px-4 rounded max-h-12;
+    @apply bg-slate-200 px-4 rounded;
 }
 
 .cti-button {
-    @apply bg-slate-200 text-slate-700;
+    @apply bg-slate-200 text-slate-700 rounded-full;
 }
 
 .cti-button-dark {
-    @apply bg-slate-700 text-slate-200;
+    @apply bg-slate-700 text-slate-200 rounded-full;
 }
 
 .cti-card {

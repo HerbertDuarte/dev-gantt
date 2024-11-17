@@ -21,12 +21,12 @@ function onFinish() {
 
 <template>
     <q-dialog ref="dialogRef">
-        <q-card class="w-screen rounded-lg">
-            <q-date flat class="w-full" v-model="model" range />
+        <q-card class="w-fit">
+            <q-date flat v-model="model" range />
 
             <div class="flex justify-end items-center p-2 gap-2">
                 <q-btn flat dense label="salvar" class="py-2 px-4 cti-button-dark" @click="onFinish()" v-close-popup />
-                <q-btn flat dense label="cancelar" class="py-2 px-4 bg-red-50 text-red-500" v-close-popup />
+                <q-btn flat dense label="cancelar" class="py-2 px-4 cti-button" v-close-popup />
             </div>
         </q-card>
 

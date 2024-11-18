@@ -18,7 +18,7 @@ import '@quasar/extras/line-awesome/line-awesome.css';
 import '@quasar/extras/bootstrap-icons/bootstrap-icons.css';
 import 'quasar/src/css/index.sass';
 import AppComponent from './App.vue';
-import './ui/styles/globals.css';
+import './presentation/styles/globals.css';
 import { createPinia } from 'pinia';
 import { quasarOptions } from './infrastructure/config/quasar-options';
 import { useAuthStore } from './infrastructure/store/auth-store';

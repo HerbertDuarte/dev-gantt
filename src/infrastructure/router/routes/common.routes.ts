@@ -4,7 +4,8 @@ export const commonRoutes: Route[] = [
     {
         path: '/login',
         name: 'login',
-        component: () => import('../../../ui/presenters/login/LoginPage.vue'),
+        component: () =>
+            import('../../../presentation/presenters/login/LoginPage.vue'),
         meta: {
             icon: 'signin',
             breadcrumb: [],
@@ -14,7 +15,8 @@ export const commonRoutes: Route[] = [
     {
         path: '/perfil',
         name: 'perfil',
-        component: () => import('../../../ui/presenters/perfil/PerfilPage.vue'),
+        component: () =>
+            import('../../../presentation/presenters/perfil/PerfilPage.vue'),
         children: [],
         meta: {
             authGuard: true,
@@ -36,7 +38,9 @@ export const commonRoutes: Route[] = [
         path: '/:catchAll(.*)',
         name: '404',
         component: () =>
-            import('../../../ui/presenters/404/PaginaNaoEncontrada.vue'),
+            import(
+                '../../../presentation/presenters/404/PaginaNaoEncontrada.vue'
+            ),
         meta: {
             icon: 'error',
             breadcrumb: [],

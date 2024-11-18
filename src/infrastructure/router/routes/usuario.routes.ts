@@ -5,7 +5,7 @@ export const usuarioRoutes: Route[] = [
         path: '/usuario/cadastro',
         component: () =>
             import(
-                '../../../ui/presenters/usuarios/components/CreateUsuarioView.vue'
+                '../../../presentation/presenters/usuarios/components/CreateUsuarioView.vue'
             ),
         meta: {
             label: 'Cadastro de usuário',

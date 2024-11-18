@@ -1,8 +1,7 @@
 export enum StatusTarefa {
-    PENDENTE = 'Pendente',
-    EM_ANDAMENTO = 'Em andamento',
-    CONCLUIDO = 'Concluido',
-    CONCLUIDO_ATRASO = 'Concluido com atraso',
-    NAO_INICIADO = 'Não iniciado',
-    MARCO = 'Marco',
+    NAO_INICIADO = 1,
+    EM_ANDAMENTO = 2,
+    CONCLUIDO = 3,
+    CONCLUIDO_ATRASO = 4,
+    PENDENTE = 5,
 }

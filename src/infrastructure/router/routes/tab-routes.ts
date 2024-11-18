@@ -8,7 +8,8 @@ interface Tab extends Route {
 export const tabRoutes: Route[] = [
     {
         path: '/',
-        component: () => import('../../../ui/presenters/home/HomePage.vue'),
+        component: () =>
+            import('../../../presentation/presenters/home/HomePage.vue'),
 
         name: 'home',
         meta: {
@@ -27,7 +28,7 @@ export const tabRoutes: Route[] = [
         path: '/usuario',
         component: () =>
             import(
-                '../../../ui/presenters/usuarios/components/UsuariosPage.vue'
+                '../../../presentation/presenters/usuarios/components/UsuariosPage.vue'
             ),
         meta: {
             roles: [UsuarioNivel.Administrador],
@@ -45,7 +46,9 @@ export const tabRoutes: Route[] = [
     {
         path: '/gantt',
         component: () =>
-            import('../../../ui/presenters/gantt/components/Gantt.vue'),
+            import(
+                '../../../presentation/presenters/gantt/components/Gantt.vue'
+            ),
         meta: {
             roles: [UsuarioNivel.Administrador],
             breadcrumb: [

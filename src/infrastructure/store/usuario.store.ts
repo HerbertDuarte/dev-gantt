@@ -7,8 +7,8 @@ import { PaginateUtil } from '../../lib/paginacao/paginate-util';
 import { PaginateResponse } from '../../lib/paginacao/paginate-response';
 import { Queries } from '../../lib/paginacao/queries';
 import { Notify } from 'quasar';
-import { nivelOptions } from '../../ui/presenters/usuarios/options/select-nivel-options';
-import { UpdateUsuarioDto } from '../../ui/presenters/usuarios/dto/update-usuario-dto';
+import { nivelOptions } from '../../presentation/presenters/usuarios/options/select-nivel-options';
+import { UpdateUsuarioDto } from '../../presentation/presenters/usuarios/dto/update-usuario-dto';
 
 type Usuarios = PaginateResponse<Usuario>;
 

@@ -1,14 +1,8 @@
 import { parseISO } from 'date-fns';
 import { Marco } from '../../domain/entities/marco';
 import { Tarefa } from '../../domain/entities/tarefa';
+import { StatusTarefa } from '../../domain/enum/status-tarefa.enum';
 
-enum StatusTarefa {
-    PENDENTE = 'Pendente',
-    EM_ANDAMENTO = 'Em andamento',
-    CONCLUIDO = 'Concluido',
-    CONCLUIDO_ATRASO = 'Concluido com atraso',
-    NAO_INICIADO = 'Não iniciado',
-}
 export const fakeTarefas = [
     {
         nome: 'Desenvolvimento de API de Autenticação',
@@ -160,7 +154,7 @@ export const fakeProjetos = [
         descricao:
             'Desenvolvimento de um portal de serviços integrado para clientes',
         marcoId: 0,
-        status: 'andamento',
+        status: StatusTarefa.EM_ANDAMENTO,
         createdAt: new Date(),
         updatedAt: new Date(),
     },
@@ -170,7 +164,7 @@ export const fakeProjetos = [
         descricao:
             'Projeto para otimizar o gerenciamento de estoque e inventário',
         marcoId: 0,
-        status: 'andamento',
+        status: StatusTarefa.EM_ANDAMENTO,
         createdAt: new Date(),
         updatedAt: new Date(),
     },
@@ -180,7 +174,7 @@ export const fakeProjetos = [
         descricao:
             'Aplicativo voltado para facilitar as vendas via dispositivos móveis',
         marcoId: 0,
-        status: 'andamento',
+        status: StatusTarefa.EM_ANDAMENTO,
         createdAt: new Date(),
         updatedAt: new Date(),
     },
@@ -203,11 +197,24 @@ const getTarefas3 = (id: number): Tarefa[] =>
         return new Tarefa(tarefa);
     });
 export const fakeMarcos: Marco[] = [
-    { nome: 'Planejamento Inicial', id: 1, tarefas: getTarefas(1) },
-    { nome: 'Desenvolvimento Backend', id: 2, tarefas: getTarefas2(2) },
-    { nome: 'Finalização e Testes', id: 3, tarefas: getTarefas3(3) },
-    { nome: 'Finalização e Testes', id: 4, tarefas: getTarefas3(4) },
-    { nome: 'Finalização e Testes', id: 5, tarefas: getTarefas3(5) },
+    {
+        nome: 'Planejamento Inicial',
+        id: 1,
+        tarefas: getTarefas(1),
+        projetoId: 0,
+    },
+    {
+        nome: 'Desenvolvimento Backend',
+        id: 2,
+        tarefas: getTarefas2(2),
+        projetoId: 0,
+    },
+    {
+        nome: 'Finalização e Testes',
+        id: 3,
+        tarefas: getTarefas3(3),
+        projetoId: 0,
+    },
 ];
 
 export const responsaveis = [

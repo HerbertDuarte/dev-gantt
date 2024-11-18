@@ -1,6 +1,6 @@
 <script setup lang="ts">
 // import { onMounted } from 'vue';
-import MainLayout from './ui/layout/components/MainLayout.vue';
+import MainLayout from './presentation/layout/components/MainLayout.vue';
 import { useAuthStore } from './infrastructure/store/auth-store';
 import { onMounted, ref } from 'vue';
 const auth = useAuthStore();

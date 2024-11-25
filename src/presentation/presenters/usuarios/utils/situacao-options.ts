@@ -16,18 +16,14 @@ export const situacaoOptions: SituacaoOption[] = [
     },
 ];
 
-export function toOption(value: UsuarioSituacao) {
-    return situacaoOptions.find(
-        (option) => option.value === value,
-    ) as SituacaoOption;
-}
+export class SituacaoOptionUtil {
+    static toOption(value: UsuarioSituacao) {
+        return situacaoOptions.find(
+            (option) => option.value === value,
+        ) as SituacaoOption;
+    }
 
-export function toValue({
-    label,
-    value,
-}: {
-    label: string;
-    value: UsuarioSituacao;
-}) {
-    return situacaoOptions.find((option) => option.label === label)?.value;
+    static toValue(label: string) {
+        return situacaoOptions.find((option) => option.label === label)?.value;
+    }
 }

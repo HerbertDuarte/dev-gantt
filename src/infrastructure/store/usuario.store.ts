@@ -7,7 +7,11 @@ import { PaginateUtil } from '../../lib/paginacao/paginate-util';
 import { PaginateResponse } from '../../lib/paginacao/paginate-response';
 import { Queries } from '../../lib/paginacao/queries';
 import { Notify } from 'quasar';
-import { UpdateUsuarioDto } from '../../presentation/presenters/usuarios/dto/update-usuario-dto';
+import {
+    UpdateUsuarioDto,
+    UpdateUsuarioRequestDto,
+} from '../../presentation/presenters/usuarios/dto/update-usuario-dto';
+import { CreateUsuarioDto } from '../../presentation/presenters/usuarios/dto/create-usuario-dto';
 
 type Usuarios = PaginateResponse<Usuario>;
 
@@ -46,8 +50,9 @@ export const useUsuarioStore = defineStore('usuario', () => {
         });
     }
 
-    async function criarUsuario(form: Usuario) {
-        await api.post('/usuarios', form);
+    async function criarUsuario(form: CreateUsuarioDto) {
+        const body: Usuario = { ...form, situacao: form.situacao.value };
+        await api.post('/usuarios', body);
         await getUsuarios();
 
         Notify.create({
@@ -56,10 +61,12 @@ export const useUsuarioStore = defineStore('usuario', () => {
         });
     }
 
-    async function atualizaUsuario(data: UpdateUsuarioDto) {
-        const body: any = data;
-        body.situacao = data.situacao.value;
-        await api.put('/usuarios/' + usuario.value?.id, data);
+    async function atualizaUsuario(form: UpdateUsuarioDto) {
+        const body: UpdateUsuarioRequestDto = {
+            ...form,
+            situacao: form.situacao.value,
+        };
+        await api.put('/usuarios/' + usuario.value?.id, body);
         await getUsuarios();
         Notify.create({
             message: 'Usuário atualizado com sucesso',

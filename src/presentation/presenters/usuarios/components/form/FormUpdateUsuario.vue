@@ -45,7 +45,7 @@ import {
 
 import { notifyError } from '../../../../../lib/ui/notify/notify-error';
 import { UpdateUsuarioDto } from '../../dto/update-usuario-dto';
-import { SituacaoOption, situacaoOptions } from '../../utils/situacao-options';
+import { SituacaoOption, situacaoOptions, SituacaoOptionUtil } from '../../utils/situacao-options';
 const props = defineProps<{
     closeDialog?: () => void;
     cancelFunc?: () => void;
@@ -132,7 +132,7 @@ const confirmarSenhaRules = [
 function preencheCampos(data: Usuario) {
     form.value.nome = data.nome;
     form.value.email = data.email;
-    form.value.situacao = situacaoAdapter(data.situacao);
+    form.value.situacao = SituacaoOptionUtil.toOption(data.situacao);
     form.value.login = data.login;
 }
 
@@ -151,10 +151,6 @@ async function submit() {
             notifyError({ error });
         });
 
-}
-
-function situacaoAdapter(value: number): SituacaoOption {
-    return situacaoOpt.value.find((item) => item.value === value) as SituacaoOption;
 }
 
 onMounted(async () => {

@@ -40,6 +40,7 @@ import {
 import { notifyError } from '../../../../../lib/ui/notify/notify-error';
 import { UsuarioSituacao } from '../../../../../domain/enum/usuario-situacao.enum';
 import { situacaoOptions } from '../../utils/situacao-options';
+import { CreateUsuarioDto } from '../../dto/create-usuario-dto';
 const props = defineProps<{
     update?: boolean;
     closeDialog?: () => void;
@@ -49,15 +50,15 @@ const props = defineProps<{
 
 const usuarioStore = useUsuarioStore();
 
-const formInitialState: Usuario = {
+const formInitialState: CreateUsuarioDto = {
     nome: '',
     email: '',
-    situacao: UsuarioSituacao.Ativo,
+    situacao: situacaoOptions[0],
     login: '',
     senha: '',
 };
 
-const form = ref<Usuario>(formInitialState);
+const form = ref<CreateUsuarioDto>(formInitialState);
 const confirmacao_senha = ref('');
 const situacaoOpt = ref(situacaoOptions)
 

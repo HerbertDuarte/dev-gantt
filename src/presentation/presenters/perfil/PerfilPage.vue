@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
 import { useAuthStore } from '../../../infrastructure/store/auth-store';
-import { UsuarioNivel } from '../../../domain/enum/usuario-nivel.enum';
 import FormUpdatePerfil from './components/FormUpdatePerfil.vue';
 
 
@@ -22,7 +21,6 @@ const { user } = storeToRefs(useAuthStore());
             <p class="text-2xl font-medium">{{ user?.nome }}</p>
             <p class="text-xs text-slate-400 pb-1">@{{ user?.login }}</p>
             <p class="text-slate-800">{{ user?.email }}</p>
-            <p v-if="user?.nivel === UsuarioNivel.Administrador" class="text-slate-800">{{ user?.nivel }}</p>
 
         </div>
         <div class="flex-1">

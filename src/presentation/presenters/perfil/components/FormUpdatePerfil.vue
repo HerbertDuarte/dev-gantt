@@ -9,12 +9,8 @@
                 clear-icon="close" :rules="emailRules" />
 
 
-            <q-select hide-dropdown-icon borderless class="cti-input" disable dense v-model="form.nivel"
-                :options="nivelAcesso" lazy-rules label="Nível" clear-icon="close" :rules="campoVazioRules" />
-
-
             <q-select hide-dropdown-icon borderless class="cti-input" disable dense v-model="form.situacao"
-                :options="situacao" lazy-rules label="Situação" clear-icon="close" :rules="campoVazioRules" />
+                :options="situacaoOpt" lazy-rules label="Situação" clear-icon="close" :rules="campoVazioRules" />
 
             <q-input borderless class="cti-input" dense v-model="form.login" lazy-rules label="Login" clearable
                 clear-icon="close" :rules="loginRules" />
@@ -48,8 +44,8 @@ import { notifyError } from '../../../../lib/ui/notify/notify-error';
 import { useAuthStore } from '../../../../infrastructure/store/auth-store';
 import { UpdateUsuarioDto } from '../../usuarios/dto/update-usuario-dto';
 import { Usuario } from '../../../../domain/entities/usuario';
-import { UsuarioNivel } from '../../../../domain/enum/usuario-nivel.enum';
 import { UsuarioSituacao } from '../../../../domain/enum/usuario-situacao.enum';
+import { situacaoOptions, toOption } from '../../usuarios/utils/situacao-options';
 
 const auth = useAuthStore()
 const props = defineProps<{
@@ -64,17 +60,16 @@ const usuario = ref(props.prevUsuario);
 const formInitialState: UpdateUsuarioDto = {
     nome: '',
     email: '',
-    nivel: UsuarioNivel.Usuario,
-    situacao: UsuarioSituacao.Ativo,
+    situacao: toOption(UsuarioSituacao.Ativo),
     login: '',
     senhaAntiga: '',
     senhaNova: ''
 };
 
+const situacaoOpt = ref(situacaoOptions)
 const form = ref<UpdateUsuarioDto>(formInitialState);
 const senhaNovaConfirmacao = ref('');
-const nivelAcesso = ref(['Usuário', 'Administrador']);
-const situacao = ref(['Ativo', 'Inativo']);
+
 
 function validaNome(val: string) {
     const regex = /[!@#$%*()_+=-?°``''~©,.;<>:]|[0-9]/g;
@@ -140,8 +135,7 @@ const confirmarSenhaRules = [
 function preencheCampos(data: Usuario) {
     form.value.nome = data.nome;
     form.value.email = data.email;
-    form.value.nivel = data.nivel;
-    form.value.situacao = data.situacao;
+    form.value.situacao = toOption(data.situacao);
     form.value.login = data.login;
 }
 

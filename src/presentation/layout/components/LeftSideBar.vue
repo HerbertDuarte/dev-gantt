@@ -8,11 +8,7 @@ const sideBarStore = useSideBarStore();
 const authStore = useAuthStore();
 
 const { user } = storeToRefs(authStore);
-function canShow(tab: Route) {
-    return (
-        user.value?.nivel && tab.meta?.roles?.includes(user.value?.nivel) || !tab.meta?.roles
-    );
-}
+
 </script>
 
 <template>
@@ -31,7 +27,7 @@ function canShow(tab: Route) {
         </q-img>
         <q-list class="p-4 text-slate-600">
             <div v-for="tab in tabRoutes">
-                <q-item v-if="canShow(tab)" :key="tab.path" :to="tab.path" clickable exact class="rounded">
+                <q-item :key="tab.path" :to="tab.path" clickable exact class="rounded">
                     <div class="flex items-center justify-start">
                         <q-item-section avatar>
                             <q-icon :name="tab.meta.icon" />

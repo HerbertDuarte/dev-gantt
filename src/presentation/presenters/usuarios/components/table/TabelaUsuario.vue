@@ -1,12 +1,12 @@
 <template>
     <CtiTable :dados="usuarios" :colunas="colunas" :acoes="acoes">
         <template v-slot:header>
-            <SelectNivel />
             <BuscaUsuario class="flex-1" />
         </template>
 
         <template v-slot:bottom>
-            <q-btn class="bg-slate-200" label="Novo Usuário" @click="() => router.push({ name: 'usuario-cadastro' })" />
+            <q-btn class="cti-button-dark" label="Novo Usuário"
+                @click="() => router.push({ name: 'usuario-cadastro' })" />
             <Pagination :page-props="pageProps" :find-action="getUsuarios" :total-paginas="usuarios.maxPag" />
         </template>
     </CtiTable>
@@ -17,7 +17,6 @@ import { Dialog, QTableColumn } from 'quasar';
 import CtiTable, { Acao } from '../../../../../lib/ui/table/CtiTable.vue';
 import { useUsuarioStore } from '../../../../../infrastructure/store/usuario.store';
 import { storeToRefs } from 'pinia';
-import SelectNivel from './SelectNivel.vue';
 import Pagination from '../../../../../lib/ui/table/Pagination.vue';
 import BuscaUsuario from './BuscaUsuario.vue';
 import CreateUsuario from '../CreateUsuario.vue';
@@ -35,7 +34,6 @@ const colunas: QTableColumn[] = [
     { name: 'nome', label: 'Nome', field: 'nome', align: 'left' },
     { name: 'login', label: 'Login', field: 'login', align: 'left' },
     { name: 'email', label: 'E-mail', field: 'email', align: 'left' },
-    { name: 'nivel', label: 'Nível', field: 'nivel', align: 'left' },
 ];
 
 const acoes: Acao[] = [
@@ -51,6 +49,7 @@ const acoes: Acao[] = [
         color: 'negative',
         action: abrirModalDelecao,
     },
+
 ];
 
 function abrirModalCriacao() {

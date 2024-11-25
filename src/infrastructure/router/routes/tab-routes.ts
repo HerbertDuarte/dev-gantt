@@ -1,4 +1,3 @@
-import { UsuarioNivel } from '../../../domain/enum/usuario-nivel.enum';
 import { Route } from '../config/route.interface';
 
 interface Tab extends Route {
@@ -31,7 +30,6 @@ export const tabRoutes: Route[] = [
                 '../../../presentation/presenters/usuarios/components/UsuariosPage.vue'
             ),
         meta: {
-            roles: [UsuarioNivel.Administrador],
             breadcrumb: [
                 {
                     path: '/usuario',
@@ -50,7 +48,6 @@ export const tabRoutes: Route[] = [
                 '../../../presentation/presenters/gantt/components/Gantt.vue'
             ),
         meta: {
-            roles: [UsuarioNivel.Administrador],
             breadcrumb: [
                 {
                     path: '/gantt',

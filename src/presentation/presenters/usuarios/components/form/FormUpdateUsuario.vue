@@ -10,11 +10,7 @@
                 clear-icon="close" :rules="emailRules" />
 
 
-            <q-select outlined dense v-model="form.nivel" :options="nivelAcesso" lazy-rules label="Nível"
-                hint="Informe o nível de acesso" clear-icon="close" :rules="campoVazioRules" />
-
-
-            <q-select dense outlined v-model="form.situacao" :options="situacao" lazy-rules label="Situação"
+            <q-select dense outlined v-model="form.situacao" :options="situacaoOpt" lazy-rules label="Situação"
                 hint="Informe a situação" clear-icon="close" :rules="campoVazioRules" />
 
             <q-input dense outlined v-model="form.login" lazy-rules label="Login" hint="Informe o nome para login"
@@ -50,8 +46,7 @@ import {
 
 import { notifyError } from '../../../../../lib/ui/notify/notify-error';
 import { UpdateUsuarioDto } from '../../dto/update-usuario-dto';
-import { UsuarioNivel } from '../../../../../domain/enum/usuario-nivel.enum';
-import { UsuarioSituacao } from '../../../../../domain/enum/usuario-situacao.enum';
+import { situacaoOptions } from '../../utils/situacao-options';
 const props = defineProps<{
     closeDialog?: () => void;
     cancelFunc?: () => void;
@@ -64,8 +59,7 @@ const usuario = storeToRefs(usuarioStore).usuario;
 const formInitialState: UpdateUsuarioDto = {
     nome: '',
     email: '',
-    nivel: UsuarioNivel.Usuario,
-    situacao: UsuarioSituacao.Ativo,
+    situacao: 1,
     login: '',
     senhaAntiga: '',
     senhaNova: ''
@@ -73,8 +67,7 @@ const formInitialState: UpdateUsuarioDto = {
 
 const form = ref<UpdateUsuarioDto>(formInitialState);
 const senhaNovaConfirmacao = ref('');
-const nivelAcesso = ref(['Usuário', 'Administrador']);
-const situacao = ref(['Ativo', 'Inativo']);
+const situacaoOpt = ref(situacaoOptions)
 
 function validaNome(val: string) {
     const regex = /[!@#$%*()_+=-?°``''~©,.;<>:]|[0-9]/g;
@@ -140,7 +133,6 @@ const confirmarSenhaRules = [
 function preencheCampos(data: Usuario) {
     form.value.nome = data.nome;
     form.value.email = data.email;
-    form.value.nivel = data.nivel;
     form.value.situacao = data.situacao;
     form.value.login = data.login;
 }

@@ -6,7 +6,6 @@ import { Usuario } from '../../domain/entities/usuario';
 import { notifyError } from '../../lib/ui/notify/notify-error';
 import { notifySuccess } from '../../lib/ui/notify/notify-success';
 import { useRouter } from 'vue-router';
-import { UsuarioNivel } from '../../domain/enum/usuario-nivel.enum';
 
 export type LoginPayload = {
     username: string;
@@ -16,7 +15,6 @@ export type LoginPayload = {
 type LoginResponse = {
     access_token: string;
     usuarioId: string;
-    nivel: UsuarioNivel;
 };
 
 export const useAuthStore = defineStore('auth', () => {
@@ -42,7 +40,6 @@ export const useAuthStore = defineStore('auth', () => {
             );
             setToken(response.data.access_token);
             getUser(response.data.usuarioId);
-            setAccessLevel(response.data.nivel);
             if (response.data.access_token) {
                 notifySuccess({ message: 'Login efetuado com sucesso' });
             }
@@ -62,17 +59,9 @@ export const useAuthStore = defineStore('auth', () => {
 
     function setUser(usuario: Usuario) {
         user.value = usuario;
-        setAccessLevel(usuario.nivel);
         if (usuario.id) {
             window.localStorage.setItem('user_id', usuario.id);
             window.localStorage.setItem('name_user', usuario.nome);
-        }
-    }
-
-    function setAccessLevel(nivel: UsuarioNivel) {
-        window.localStorage.setItem('access_level', nivel);
-        if (nivel === UsuarioNivel.Administrador) {
-            isAdmin.value = true;
         }
     }
 
@@ -112,7 +101,6 @@ export const useAuthStore = defineStore('auth', () => {
 
     async function getUser(id: string) {
         const { data } = await api.get<Usuario>(`usuarios/${id}`);
-        setAccessLevel(data.nivel);
         setUser(data);
         return data;
     }

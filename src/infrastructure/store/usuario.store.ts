@@ -7,7 +7,6 @@ import { PaginateUtil } from '../../lib/paginacao/paginate-util';
 import { PaginateResponse } from '../../lib/paginacao/paginate-response';
 import { Queries } from '../../lib/paginacao/queries';
 import { Notify } from 'quasar';
-import { nivelOptions } from '../../presentation/presenters/usuarios/options/select-nivel-options';
 import { UpdateUsuarioDto } from '../../presentation/presenters/usuarios/dto/update-usuario-dto';
 
 type Usuarios = PaginateResponse<Usuario>;
@@ -17,13 +16,11 @@ export const useUsuarioStore = defineStore('usuario', () => {
     const usuario = ref<Usuario | null>(null);
 
     const busca = ref('');
-    const selectNivel = ref(nivelOptions[0]);
     const pageProps = usePageProps({ itensPorPagina: 5 });
 
     async function getUsuarios() {
         const queries: Queries = {
             busca: busca.value,
-            nivel: selectNivel.value.value,
         };
 
         const { data, maxPag } = await PaginateUtil.paginate<Usuario>({
@@ -76,9 +73,6 @@ export const useUsuarioStore = defineStore('usuario', () => {
             type: 'positive',
         });
     }
-
-    watch(selectNivel, getUsuarios);
-
     return {
         usuarios,
         usuario,
@@ -89,7 +83,6 @@ export const useUsuarioStore = defineStore('usuario', () => {
         atualizaUsuario,
         atualizaPerfil,
         busca,
-        selectNivel,
         pageProps,
     };
 });

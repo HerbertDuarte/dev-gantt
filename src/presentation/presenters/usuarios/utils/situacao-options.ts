@@ -1,11 +1,11 @@
 import { UsuarioSituacao } from '../../../../domain/enum/usuario-situacao.enum';
 
-type Option = {
+export type SituacaoOption = {
     label: string;
     value: UsuarioSituacao;
 };
 
-export const situacaoOptions: Option[] = [
+export const situacaoOptions: SituacaoOption[] = [
     {
         label: 'Ativo',
         value: UsuarioSituacao.Ativo,
@@ -17,7 +17,9 @@ export const situacaoOptions: Option[] = [
 ];
 
 export function toOption(value: UsuarioSituacao) {
-    return situacaoOptions.find((option) => option.value === value) as Option;
+    return situacaoOptions.find(
+        (option) => option.value === value,
+    ) as SituacaoOption;
 }
 
 export function toValue({

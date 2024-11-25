@@ -57,6 +57,8 @@ export const useUsuarioStore = defineStore('usuario', () => {
     }
 
     async function atualizaUsuario(data: UpdateUsuarioDto) {
+        const body: any = data;
+        body.situacao = data.situacao.value;
         await api.put('/usuarios/' + usuario.value?.id, data);
         await getUsuarios();
         Notify.create({

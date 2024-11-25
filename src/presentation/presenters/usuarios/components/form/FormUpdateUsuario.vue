@@ -29,9 +29,8 @@
         </div>
 
         <div class="flex items-center justify-end gap-2 pt-6">
-            <q-btn size="md" label="Salvar" type="submit" color="primary" />
-            <q-btn @click="cancelFunc && cancelFunc()" v-close-popup label="Cancelar" color="grey-2"
-                text-color="grey-10" />
+            <q-btn label="Salvar" type="submit" class="cti-button-dark" />
+            <q-btn @click="cancelFunc && cancelFunc()" v-close-popup label="Cancelar" class="cti-button" />
         </div>
     </q-form>
 </template>
@@ -46,7 +45,7 @@ import {
 
 import { notifyError } from '../../../../../lib/ui/notify/notify-error';
 import { UpdateUsuarioDto } from '../../dto/update-usuario-dto';
-import { situacaoOptions } from '../../utils/situacao-options';
+import { SituacaoOption, situacaoOptions } from '../../utils/situacao-options';
 const props = defineProps<{
     closeDialog?: () => void;
     cancelFunc?: () => void;
@@ -59,7 +58,7 @@ const usuario = storeToRefs(usuarioStore).usuario;
 const formInitialState: UpdateUsuarioDto = {
     nome: '',
     email: '',
-    situacao: 1,
+    situacao: situacaoOptions[0],
     login: '',
     senhaAntiga: '',
     senhaNova: ''
@@ -133,7 +132,7 @@ const confirmarSenhaRules = [
 function preencheCampos(data: Usuario) {
     form.value.nome = data.nome;
     form.value.email = data.email;
-    form.value.situacao = data.situacao;
+    form.value.situacao = situacaoAdapter(data.situacao);
     form.value.login = data.login;
 }
 
@@ -152,6 +151,10 @@ async function submit() {
             notifyError({ error });
         });
 
+}
+
+function situacaoAdapter(value: number): SituacaoOption {
+    return situacaoOpt.value.find((item) => item.value === value) as SituacaoOption;
 }
 
 onMounted(async () => {

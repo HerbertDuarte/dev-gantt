@@ -1,6 +1,10 @@
-import { Usuario } from '../../../../domain/entities/usuario';
+import { SituacaoOption } from '../utils/situacao-options';
 
-export interface UpdateUsuarioDto extends Omit<Usuario, 'senha'> {
+export interface UpdateUsuarioDto {
+    nome: string;
+    email: string;
+    situacao: SituacaoOption;
+    login: string;
     senhaAntiga?: string;
     senhaNova?: string;
 }

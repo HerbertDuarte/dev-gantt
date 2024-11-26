@@ -1,96 +1,20 @@
 import { defineStore } from 'pinia';
+import { ref } from 'vue';
 import { Usuario } from '../../domain/entities/usuario';
-import { ref, watch } from 'vue';
-import { api } from '../boot/axios';
 import { usePageProps } from '../../lib/paginacao/page-props';
-import { PaginateUtil } from '../../lib/paginacao/paginate-util';
 import { PaginateResponse } from '../../lib/paginacao/paginate-response';
-import { Queries } from '../../lib/paginacao/queries';
-import { Notify } from 'quasar';
-import {
-    UpdateUsuarioDto,
-    UpdateUsuarioRequestDto,
-} from '../../presentation/presenters/usuarios/dto/update-usuario-dto';
-import { CreateUsuarioDto } from '../../presentation/presenters/usuarios/dto/create-usuario-dto';
 
 type Usuarios = PaginateResponse<Usuario>;
 
 export const useUsuarioStore = defineStore('usuario', () => {
     const usuarios = ref<Usuarios>({ data: [], maxPag: 0 });
     const usuario = ref<Usuario | null>(null);
-
-    const busca = ref('');
     const pageProps = usePageProps({ itensPorPagina: 5 });
+    const busca = ref('');
 
-    async function getUsuarios() {
-        const queries: Queries = {
-            busca: busca.value,
-        };
-
-        const { data, maxPag } = await PaginateUtil.paginate<Usuario>({
-            pageProps,
-            path: 'usuarios',
-            queries,
-        });
-        usuarios.value.data = data;
-        usuarios.value.maxPag = maxPag;
-    }
-
-    async function getUsuario(id: string) {
-        const { data } = await api.get<Usuario>('/usuarios/' + id);
-        usuario.value = data;
-    }
-
-    async function deletaUsuario(id: string) {
-        await api.delete('/usuarios/' + id);
-        await getUsuarios();
-        Notify.create({
-            message: 'Usuário deletado com sucesso',
-            type: 'positive',
-        });
-    }
-
-    async function criarUsuario(form: CreateUsuarioDto) {
-        const body: Usuario = { ...form, situacao: form.situacao.value };
-        await api.post('/usuarios', body);
-        await getUsuarios();
-
-        Notify.create({
-            message: 'Usuário salvo com sucesso',
-            type: 'positive',
-        });
-    }
-
-    async function atualizaUsuario(form: UpdateUsuarioDto) {
-        const body: UpdateUsuarioRequestDto = {
-            ...form,
-            situacao: form.situacao.value,
-        };
-        await api.put('/usuarios/' + usuario.value?.id, body);
-        await getUsuarios();
-        Notify.create({
-            message: 'Usuário atualizado com sucesso',
-            type: 'positive',
-        });
-    }
-
-    async function atualizaPerfil(data: UpdateUsuarioDto) {
-        await api.put('/usuarios/perfil/', data);
-        await getUsuarios();
-        Notify.create({
-            message: 'Usuário atualizado com sucesso',
-            type: 'positive',
-        });
-    }
     return {
         usuarios,
         usuario,
-        getUsuarios,
-        getUsuario,
-        deletaUsuario,
-        criarUsuario,
-        atualizaUsuario,
-        atualizaPerfil,
         busca,
         pageProps,
     };

@@ -13,20 +13,20 @@
 </template>
 
 <script lang="ts" setup>
-import { Dialog, QTableColumn } from 'quasar';
-import CtiTable, { Acao } from '../../../../../lib/ui/table/CtiTable.vue';
-import { useUsuarioStore } from '../../../../../infrastructure/store/usuario.store';
 import { storeToRefs } from 'pinia';
-import Pagination from '../../../../../lib/ui/table/Pagination.vue';
-import BuscaUsuario from './BuscaUsuario.vue';
-import CreateUsuario from '../CreateUsuario.vue';
-import { CreateAlert } from '../../../../../lib/ui/alert/useAlert';
-import UpdateUsuario from '../UpdateUsuario.vue';
+import { Dialog, QTableColumn } from 'quasar';
 import { useRouter } from 'vue-router';
+import { deletaUsuario, getUsuario, getUsuarios } from '../../../../../infrastructure/actions/usuario.actions';
+import { useUsuarioStore } from '../../../../../infrastructure/store/usuario.store';
+import { CreateAlert } from '../../../../../lib/ui/alert/useAlert';
+import CtiTable, { Acao } from '../../../../../lib/ui/table/CtiTable.vue';
+import Pagination from '../../../../../lib/ui/table/Pagination.vue';
+import CreateUsuario from '../CreateUsuario.vue';
+import UpdateUsuario from '../UpdateUsuario.vue';
+import BuscaUsuario from './BuscaUsuario.vue';
 
 const router = useRouter()
 const usuarioStore = useUsuarioStore();
-const { getUsuarios } = usuarioStore;
 const pageProps = usuarioStore.pageProps();
 const { usuarios } = storeToRefs(usuarioStore);
 
@@ -59,7 +59,7 @@ function abrirModalCriacao() {
 }
 
 async function abrirModalEdicao(row: { id: string }) {
-    await usuarioStore.getUsuario(row.id);
+    await getUsuario(row.id);
     Dialog.create({
         component: UpdateUsuario,
     });
@@ -69,7 +69,7 @@ function abrirModalDelecao(row: { id: string; nome: string }) {
     CreateAlert({
         mensagem: `Tem certeza que deseja deletar ${row.nome}?`,
         buttonTitle: 'Deletar',
-        action: () => usuarioStore.deletaUsuario(row.id),
+        action: () => deletaUsuario(row.id),
     });
 }
 </script>

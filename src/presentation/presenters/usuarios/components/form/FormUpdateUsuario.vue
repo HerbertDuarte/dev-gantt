@@ -36,16 +36,16 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
-import { useUsuarioStore } from '../../../../../infrastructure/store/usuario.store';
 import { storeToRefs } from 'pinia';
+import { onMounted, ref } from 'vue';
 import {
     Usuario,
 } from '../../../../../domain/entities/usuario';
-
+import { atualizaUsuario } from '../../../../../infrastructure/actions/usuario.actions';
+import { useUsuarioStore } from '../../../../../infrastructure/store/usuario.store';
 import { notifyError } from '../../../../../lib/ui/notify/notify-error';
-import { UpdateUsuarioDto } from '../../dto/update-usuario-dto';
-import { SituacaoOption, situacaoOptions, SituacaoOptionUtil } from '../../utils/situacao-options';
+import { FormUpdateUsuarioDto } from '../../dto/update-usuario-dto';
+import { situacaoOptions, SituacaoOptionUtil } from '../../utils/situacao-options';
 const props = defineProps<{
     closeDialog?: () => void;
     cancelFunc?: () => void;
@@ -55,7 +55,7 @@ const mudarSenha = ref(false);
 const usuarioStore = useUsuarioStore();
 const usuario = storeToRefs(usuarioStore).usuario;
 
-const formInitialState: UpdateUsuarioDto = {
+const formInitialState: FormUpdateUsuarioDto = {
     nome: '',
     email: '',
     situacao: situacaoOptions[0],
@@ -64,7 +64,7 @@ const formInitialState: UpdateUsuarioDto = {
     senhaNova: ''
 };
 
-const form = ref<UpdateUsuarioDto>(formInitialState);
+const form = ref<FormUpdateUsuarioDto>(formInitialState);
 const senhaNovaConfirmacao = ref('');
 const situacaoOpt = ref(situacaoOptions)
 
@@ -142,8 +142,7 @@ async function submit() {
         delete form.value.senhaNova
     }
 
-    usuarioStore
-        .atualizaUsuario(form.value)
+    atualizaUsuario(form.value)
         .then(() => {
             props.closeDialog ? props.closeDialog() : null;
         })

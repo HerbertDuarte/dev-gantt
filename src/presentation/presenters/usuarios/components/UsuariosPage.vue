@@ -6,11 +6,8 @@
 
 <script lang="ts" setup>
 import { onMounted } from 'vue';
-import { useUsuarioStore } from '../../../../infrastructure/store/usuario.store';
+import { getUsuarios } from '../../../../infrastructure/actions/usuario.actions';
 import TabelaUsuario from './table/TabelaUsuario.vue';
-
-const usuarioStore = useUsuarioStore();
-const { getUsuarios } = usuarioStore;
 
 onMounted(async () => {
     await getUsuarios();

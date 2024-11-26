@@ -32,15 +32,15 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { useUsuarioStore } from '../../../../../infrastructure/store/usuario.store';
 import {
     Usuario
 } from '../../../../../domain/entities/usuario';
+import { useUsuarioStore } from '../../../../../infrastructure/store/usuario.store';
 
+import { criarUsuario } from '../../../../../infrastructure/actions/usuario.actions';
 import { notifyError } from '../../../../../lib/ui/notify/notify-error';
-import { UsuarioSituacao } from '../../../../../domain/enum/usuario-situacao.enum';
+import { FormCreateUsuarioDto } from '../../dto/create-usuario-dto';
 import { situacaoOptions } from '../../utils/situacao-options';
-import { CreateUsuarioDto } from '../../dto/create-usuario-dto';
 const props = defineProps<{
     update?: boolean;
     closeDialog?: () => void;
@@ -50,7 +50,7 @@ const props = defineProps<{
 
 const usuarioStore = useUsuarioStore();
 
-const formInitialState: CreateUsuarioDto = {
+const formInitialState: FormCreateUsuarioDto = {
     nome: '',
     email: '',
     situacao: situacaoOptions[0],
@@ -58,7 +58,7 @@ const formInitialState: CreateUsuarioDto = {
     senha: '',
 };
 
-const form = ref<CreateUsuarioDto>(formInitialState);
+const form = ref<FormCreateUsuarioDto>(formInitialState);
 const confirmacao_senha = ref('');
 const situacaoOpt = ref(situacaoOptions)
 
@@ -128,8 +128,7 @@ async function submit() {
 }
 
 function callCreate() {
-    usuarioStore
-        .criarUsuario(form.value)
+    criarUsuario(form.value)
         .then(() => {
             props.closeDialog ? props.closeDialog() : null;
         })

@@ -1,6 +1,6 @@
 import { SituacaoOption } from '../utils/situacao-options';
 
-export interface CreateUsuarioDto {
+export interface FormCreateUsuarioDto {
     nome: string;
     email: string;
     situacao: SituacaoOption;

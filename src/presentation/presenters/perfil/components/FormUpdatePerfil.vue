@@ -40,12 +40,13 @@
 import { onMounted, ref } from 'vue';
 import { useUsuarioStore } from '../../../../infrastructure/store/usuario.store';
 
-import { notifyError } from '../../../../lib/ui/notify/notify-error';
-import { useAuthStore } from '../../../../infrastructure/store/auth-store';
-import { UpdateUsuarioDto } from '../../usuarios/dto/update-usuario-dto';
 import { Usuario } from '../../../../domain/entities/usuario';
 import { UsuarioSituacao } from '../../../../domain/enum/usuario-situacao.enum';
-import { situacaoOptions, toOption } from '../../usuarios/utils/situacao-options';
+import { atualizaPerfil } from '../../../../infrastructure/actions/usuario.actions';
+import { useAuthStore } from '../../../../infrastructure/store/auth-store';
+import { notifyError } from '../../../../lib/ui/notify/notify-error';
+import { FormUpdateUsuarioDto } from '../../usuarios/dto/update-usuario-dto';
+import { situacaoOptions, SituacaoOptionUtil } from '../../usuarios/utils/situacao-options';
 
 const auth = useAuthStore()
 const props = defineProps<{
@@ -57,17 +58,17 @@ const props = defineProps<{
 const mudarSenha = ref(false);
 const usuarioStore = useUsuarioStore();
 const usuario = ref(props.prevUsuario);
-const formInitialState: UpdateUsuarioDto = {
+const formInitialState: FormUpdateUsuarioDto = {
     nome: '',
     email: '',
-    situacao: toOption(UsuarioSituacao.Ativo),
+    situacao: SituacaoOptionUtil.toOption(UsuarioSituacao.Ativo),
     login: '',
     senhaAntiga: '',
     senhaNova: ''
 };
 
 const situacaoOpt = ref(situacaoOptions)
-const form = ref<UpdateUsuarioDto>(formInitialState);
+const form = ref<FormUpdateUsuarioDto>(formInitialState);
 const senhaNovaConfirmacao = ref('');
 
 
@@ -135,7 +136,7 @@ const confirmarSenhaRules = [
 function preencheCampos(data: Usuario) {
     form.value.nome = data.nome;
     form.value.email = data.email;
-    form.value.situacao = toOption(data.situacao);
+    form.value.situacao = SituacaoOptionUtil.toOption(data.situacao);
     form.value.login = data.login;
 }
 
@@ -146,8 +147,7 @@ async function submit() {
         delete updateUsuarioDto.senhaNova
     }
 
-    usuarioStore
-        .atualizaPerfil(updateUsuarioDto)
+    atualizaPerfil(updateUsuarioDto)
         .then(() => {
             props.closeDialog ? props.closeDialog() : null;
         })

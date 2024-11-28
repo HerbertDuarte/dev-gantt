@@ -1,6 +1,7 @@
 <template>
     <div class="flex w-full gap-2">
-        <q-input class="inline flex-1 cti-input" dense borderless v-model="busca" placeholder="Pesquisar" />
+        <q-input label="Pesquisar" class="inline flex-1" dense outlined v-model="busca"
+            placeholder="Digite o nome ou email do usuário" />
         <q-btn flat icon="search" @click="getUsuarios" />
     </div>
 </template>

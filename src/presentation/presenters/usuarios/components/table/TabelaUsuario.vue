@@ -5,7 +5,7 @@
         </template>
 
         <template v-slot:bottom>
-            <q-btn class="cti-button-dark" label="Novo Usuário"
+            <q-btn icon="add" class="cti-button-dark" label="Novo Usuário"
                 @click="() => router.push({ name: 'usuario-cadastro' })" />
             <Pagination :page-props="pageProps" :find-action="getUsuarios" :total-paginas="usuarios.maxPag" />
         </template>

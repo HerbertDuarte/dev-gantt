@@ -1,37 +1,36 @@
 <template>
     <q-form @submit.prevent.stop="() => submit()" greedy>
         <div class="space-y-2">
-            <q-input borderless class="cti-input" dense v-model="form.nome" lazy-rules label="Nome" clearable
-                clear-icon="close" :rules="nameRules" />
+            <q-input outlined dense v-model="form.nome" lazy-rules label="Nome" clearable clear-icon="close"
+                :rules="nameRules" />
 
 
-            <q-input borderless class="cti-input" dense v-model="form.email" lazy-rules label="Email" clearable
-                clear-icon="close" :rules="emailRules" />
+            <q-input outlined dense v-model="form.email" lazy-rules label="Email" clearable clear-icon="close"
+                :rules="emailRules" />
 
 
-            <q-select hide-dropdown-icon borderless class="cti-input" disable dense v-model="form.situacao"
-                :options="situacaoOpt" lazy-rules label="Situação" clear-icon="close" :rules="campoVazioRules" />
+            <q-select hide-dropdown-icon outlined disable dense v-model="form.situacao" :options="situacaoOpt"
+                lazy-rules label="Situação" clear-icon="close" :rules="campoVazioRules" />
 
-            <q-input borderless class="cti-input" dense v-model="form.login" lazy-rules label="Login" clearable
-                clear-icon="close" :rules="loginRules" />
+            <q-input outlined dense v-model="form.login" lazy-rules label="Login" clearable clear-icon="close"
+                :rules="loginRules" />
 
             <q-checkbox class="py-2" v-model="mudarSenha" label="mudar senha" />
 
             <div class="space-y-2" v-if="mudarSenha">
-                <q-input borderless class="cti-input" dense v-model="form.senhaAntiga" lazy-rules label="Senha antiga"
-                    type="password" clear-icon="close" :rules="senhaRules" />
-                <q-input borderless class="cti-input" type="password" dense v-model="form.senhaNova" lazy-rules
-                    label="Senha nova" clear-icon="close" :rules="senhaRules" />
-                <q-input borderless class="cti-input" dense v-model="senhaNovaConfirmacao" lazy-rules
-                    label="Confirmação da senha" type="password" clear-icon="close" :rules="confirmarSenhaRules" />
+                <q-input outlined dense v-model="form.senhaAntiga" lazy-rules label="Senha antiga" type="password"
+                    clear-icon="close" :rules="senhaRules" />
+                <q-input outlined type="password" dense v-model="form.senhaNova" lazy-rules label="Senha nova"
+                    clear-icon="close" :rules="senhaRules" />
+                <q-input outlined dense v-model="senhaNovaConfirmacao" lazy-rules label="Confirmação da senha"
+                    type="password" clear-icon="close" :rules="confirmarSenhaRules" />
 
             </div>
         </div>
 
         <div class="flex items-center justify-end gap-2 pt-6">
-            <q-btn size="md" label="Salvar" type="submit" color="primary" />
-            <q-btn @click="cancelFunc && cancelFunc()" v-close-popup label="Cancelar" color="grey-2"
-                text-color="grey-10" />
+            <q-btn size="md" label="Salvar" type="submit" class="cti-button-dark" />
+            <q-btn @click="cancelFunc && cancelFunc()" v-close-popup label="Cancelar" class="cti-button" />
         </div>
     </q-form>
 </template>

@@ -5,14 +5,11 @@ import FormCreateTarefa from './FormCreateTarefa.vue';
 
 <template>
     <q-dialog persistent ref="dialogRef" class="rounded-3xl">
-        <q-card style="width: 90vw; max-width: 600px;">
-            <div class="flex justify-between items-center bg-slate-100 p-2">
-                <p class="font-medium text-base uppercase">Criação de tarefa</p>
-                <q-btn flat dense round icon="close" class="text-slate-700" v-close-popup />
-            </div>
-            <div class="p-4">
-                <FormCreateTarefa />
-            </div>
+        <q-card class="sm:p-10 p-6 w-full">
+            <p class="uppercase font-bold text-xl text-slate-800 pb-7">
+                <q-icon class="pb-1.5" size="28px" name="post_add" /> Adicionar tarefa
+            </p>
+            <FormCreateTarefa />
         </q-card>
     </q-dialog>
 </template>

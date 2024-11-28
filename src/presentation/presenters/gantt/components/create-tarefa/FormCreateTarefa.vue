@@ -32,20 +32,18 @@ const datePickerDialogModel = ref(false)
 const openDatePickerComponent = () => datePickerDialogModel.value = true
 
 async function submit() {
-    try {
-        const tarefa = new Tarefa({
-            nome: form.value.nome,
-            marcoId: form.value.marcoId,
-            descricao: form.value.descricao,
-            dataInicio: new Date(dates.value.from),
-            dataFim: new Date(dates.value.to),
-            responsaveis: form.value.responsaveis
-        })
 
-        await criaTarefa(tarefa);
-    } catch (error) {
-        console.log(error)
-    }
+    const tarefa = new Tarefa({
+        nome: form.value.nome,
+        marcoId: form.value.marcoId,
+        descricao: form.value.descricao,
+        dataInicio: new Date(dates.value.from),
+        dataFim: new Date(dates.value.to),
+        responsaveis: form.value.responsaveis
+    })
+
+    await criaTarefa(tarefa);
+
 }
 
 </script>
@@ -55,34 +53,31 @@ async function submit() {
 
     <q-form @submit.prevent.stop="" greedy>
         <div>
-            <q-input borderless class="cti-input" lazy-rules dense v-model="form.nome" label="Nome"
+            <q-input outlined lazy-rules dense v-model="form.nome" label="Nome"
                 :rules="[emptyFieldValidator, normalizeValidator]">
             </q-input>
 
             <div class="flex items-center justify-start gap-2">
-                <q-select option-value="id" option-label="nome" hide-dropdown-icon borderless class="cti-input flex-1"
-                    dense v-model="form.marcoId" :options="marcos" lazy-rules label="Marco" clear-icon="close"
+                <q-select option-value="id" option-label="nome" hide-dropdown-icon outlined class="flex-1" dense
+                    v-model="form.marcoId" :options="marcos" lazy-rules label="Marco" clear-icon="close"
                     :rules="[emptyFieldValidator]" />
 
-                <q-select option-value="id" option-label="nome" hide-dropdown-icon borderless class="cti-input flex-1"
-                    dense v-model="form.responsaveis" multiple :options="reponsaveis" lazy-rules label="Responsaveis"
+                <q-select option-value="id" option-label="nome" hide-dropdown-icon outlined class="flex-1" dense
+                    v-model="form.responsaveis" multiple :options="reponsaveis" lazy-rules label="Responsaveis"
                     clear-icon="close" :rules="[emptyFieldValidator]" />
             </div>
 
             <div class="flex items-center justify-start gap-2">
-                <q-input disable borderless class="cti-input flex-1" dense v-model="dates.from" lazy-rules
-                    label="Data inicial" />
+                <q-input disable outlined class="flex-1" dense v-model="dates.from" lazy-rules label="Data inicial" />
 
-                <q-input disable borderless class="cti-input flex-1" dense v-model="dates.to" lazy-rules
-                    label="Data final" />
+                <q-input disable outlined class="flex-1" dense v-model="dates.to" lazy-rules label="Data final" />
 
                 <q-btn icon="calendar_month" @click="openDatePickerComponent" class="cti-button-dark" dense round />
             </div>
 
 
             <div class="pt-4">
-                <q-input type="textarea" borderless class="cti-input" dense v-model="form.descricao" lazy-rules
-                    label="Descrição" />
+                <q-input type="textarea" outlined dense v-model="form.descricao" lazy-rules label="Descrição" />
             </div>
 
         </div>

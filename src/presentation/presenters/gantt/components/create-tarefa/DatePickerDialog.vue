@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, Ref } from 'vue';
+import { ref } from 'vue';
 defineProps<{
     dates: {
         from: string | null;
@@ -24,9 +24,9 @@ function onFinish() {
         <q-card class="w-fit">
             <q-date flat v-model="model" range />
 
-            <div class="flex justify-end items-center p-2 gap-2">
-                <q-btn flat dense label="salvar" class="py-2 px-4 cti-button-dark" @click="onFinish()" v-close-popup />
-                <q-btn flat dense label="cancelar" class="py-2 px-4 cti-button" v-close-popup />
+            <div class="flex justify-end items-center pb-2 px-2 gap-2">
+                <q-btn icon="save" flat dense class="p-2 cti-button-dark" @click="onFinish()" v-close-popup />
+                <q-btn icon="close" flat dense class="p-2 cti-button" v-close-popup />
             </div>
         </q-card>
 

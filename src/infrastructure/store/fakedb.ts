@@ -29,6 +29,8 @@ export const fakeTarefas = [
         dataFim: parseISO('2025-10-10'),
         marcoId: 1,
         status: StatusTarefa.EM_ANDAMENTO,
+        descricao:
+            'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem similique sunt minima voluptate blanditiis ipsum veniam vel obcaecati sint, accusantium mollitia in consectetur at fugiat ullam excepturi maiores repellendus totam.',
         id: 3,
     },
     {
@@ -222,24 +224,24 @@ export const responsaveis = [
         imageUrl:
             'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541',
         id: 1,
-        nome: 'João',
+        nome: 'Celma Duarte Santos',
     },
     {
         imageUrl:
             'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541',
         id: 2,
-        nome: 'Maria',
+        nome: 'Maria do Santos',
     },
     {
         imageUrl:
             'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541',
         id: 3,
-        nome: 'José',
+        nome: 'José Santos dos Santos',
     },
-    {
-        imageUrl:
-            'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541',
-        id: 4,
-        nome: 'Maria',
-    },
+    // {
+    //     imageUrl:
+    //         'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541',
+    //     id: 4,
+    //     nome: 'Deusa Maria Nascimento',
+    // },
 ];

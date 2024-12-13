@@ -9,8 +9,9 @@
 .cti-input input {
     @apply py-2;
 }
-.cti-textarea {
-    @apply bg-slate-100 px-4 rounded;
+.cti-textarea textarea,
+.cti-textarea div {
+    @apply p-0.5 !important;
 }
 
 .cti-input-bold {
@@ -23,6 +24,16 @@
 
 .cti-button-dark {
     @apply bg-slate-700 text-slate-200 rounded-full;
+}
+
+.cti-button-ghost {
+    @apply bg-slate-600/10 text-slate-800 rounded-full;
+}
+
+.cti-button-ghost:before,
+.cti-button-dark:before,
+.cti-button:before {
+    @apply shadow-none;
 }
 
 .cti-card {

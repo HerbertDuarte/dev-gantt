@@ -1,5 +1,5 @@
 export class CheckItem {
-    id: number = 0;
+    id: string = '';
     descricao: string = '';
     concluido: boolean = false;
     dataConclusao?: null;

@@ -1,7 +1,7 @@
 import { CheckItem } from './check-item';
 
 export class CheckList {
-    id: number = 0;
+    id: string = '';
     nome: string = '';
     itens: CheckItem[] = [];
 

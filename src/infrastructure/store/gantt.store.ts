@@ -1,32 +1,43 @@
 import { defineStore } from 'pinia';
-import { computed, ref } from 'vue';
-import { fakeMarcos } from './fakedb';
+import { computed, onMounted, ref } from 'vue';
+import { fakeMarcos, fakeProjetos } from './fakedb';
 import { Tarefa } from '../../domain/entities/tarefa';
 import { Marco } from '../../domain/entities/marco';
 import { Ganttable } from '../../domain/aggregates/ganttable';
 import { api } from '../boot/axios';
+import { Projeto } from '../../domain/entities/projeto';
 
 export const useGanttStore = defineStore('gantt', () => {
-    const marcos = ref<Marco[]>(fakeMarcos);
+    const projeto = ref<Projeto>();
+    const projetos = ref<Projeto[]>();
+
+    const marcos = computed(() => {
+        const m: Marco[] = [];
+        projeto.value?.marcos.forEach((marco) => {
+            m.push(marco);
+        });
+        return m;
+    });
+
     const tarefas = computed(() => {
         const t: Tarefa[] = [];
-        marcos.value.forEach((marco) => {
+        marcos.value?.forEach((marco) => {
             t.push(...marco.tarefas);
         });
         return t;
     });
     const ganttables = computed(() => {
         const g: Ganttable[] = [];
-        marcos.value.forEach((marco) => {
+        marcos.value?.forEach((marco) => {
             g.push(marco);
             g.push(...marco.tarefas);
         });
         return g;
     });
 
-    async function buscaDadosGantt(projetoId: number) {
-        const { data } = await api.get<Marco[]>(`/marcos/projeto/${projetoId}`);
-        marcos.value = data;
+    async function buscaDadosGantt(projetoId: string) {
+        const { data } = await api.get<any>('/projeto');
+        projeto.value = data;
     }
 
     async function criaTarefa(tarefa: Tarefa) {
@@ -64,5 +75,6 @@ export const useGanttStore = defineStore('gantt', () => {
         atualizaTarefa,
         atualizaMarco,
         removeTarefa,
+        projeto,
     };
 });

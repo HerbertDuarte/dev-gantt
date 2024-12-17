@@ -2,15 +2,15 @@ import { StatusTarefa } from '../enum/status-tarefa.enum';
 import { CheckList } from './check-list';
 
 export class Tarefa {
-    id: number = 0;
+    id: string = '';
     nome: string = '';
     responsaveis: Reponsavel[] = [];
     descricao: string = '';
     dataInicio: Date = new Date();
     dataFim: Date = new Date();
     status: StatusTarefa = StatusTarefa.NAO_INICIADO;
-    marcoId: number = 0;
-    projetoId: number = 0;
+    marcoid: string = '';
+    projetoId: string = '';
     checkLists: CheckList[] = [];
 
     constructor(data: Partial<Tarefa> = {}) {

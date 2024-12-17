@@ -2,7 +2,6 @@
 import { storeToRefs } from 'pinia';
 import GanttLeftTableHead from './GanttLeftTableHead.vue';
 
-import { useProjetoStore } from '../../../../../infrastructure/store/projeto.store';
 import { useGanttStore } from '../../../../../infrastructure/store/gantt.store';
 
 import GanttLeftNomeRow from './rows/GanttLeftNomeRow.vue';
@@ -10,8 +9,7 @@ import GanttLeftResponsavelRow from './rows/GanttLeftResponsavelRow.vue';
 import GanttLeftDuracaoRow from './rows/GanttLeftDuracaoRow.vue';
 import GanttLeftDataRow from './rows/GanttLeftDataRow.vue';
 
-const { ganttables } = storeToRefs(useGanttStore());
-const { projeto } = storeToRefs(useProjetoStore());
+const { ganttables, projeto } = storeToRefs(useGanttStore());
 
 </script>
 

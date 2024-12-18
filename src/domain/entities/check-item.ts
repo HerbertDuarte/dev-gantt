@@ -5,6 +5,9 @@ export class CheckItem {
     dataConclusao?: null;
 
     constructor(data: Partial<CheckItem> = {}) {
-        Object.assign(this, data);
+        Object.assign(this, {
+            ...data,
+            dataConclusao: data.dataConclusao && new Date(data.dataConclusao),
+        });
     }
 }

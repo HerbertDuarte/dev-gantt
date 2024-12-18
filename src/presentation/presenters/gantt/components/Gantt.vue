@@ -7,9 +7,8 @@ import GanttEmptyTable from './GanttEmptyTable.vue';
 import { onMounted, ref } from 'vue';
 import { Projeto } from '../../../../domain/entities/projeto';
 import { Marco } from '../../../../domain/entities/marco';
-import { api } from '../../../../infrastructure/boot/axios';
 const store = useGanttStore()
-const { tarefas, marcos, projeto } = storeToRefs(store)
+const { tarefas, marcos,ganttables, projeto } = storeToRefs(store)
 
 const div1 = ref<HTMLElement | null>(null)
 const div2 = ref<HTMLElement | null>(null)
@@ -43,8 +42,6 @@ onMounted(async () => {
     <div v-else>
         <GanttEmptyTable :projeto="(projeto as Projeto)" :marcos="(marcos as Marco[])" />
     </div>
-
-
 </template>
 <style lang="css" scoped>
 .gantt-table {

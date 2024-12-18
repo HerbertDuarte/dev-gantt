@@ -14,7 +14,7 @@ export const useGanttStore = defineStore('gantt', () => {
     const marcos = computed(() => {
         const m: Marco[] = [];
         projeto.value?.marcos.forEach((marco) => {
-            m.push(marco);
+            m.push(new Marco(marco));
         });
         return m;
     });
@@ -22,22 +22,32 @@ export const useGanttStore = defineStore('gantt', () => {
     const tarefas = computed(() => {
         const t: Tarefa[] = [];
         marcos.value?.forEach((marco) => {
-            t.push(...marco.tarefas);
+            marco.tarefas.forEach((tarefa) => {
+                t.push(new Tarefa(tarefa));
+            });
         });
         return t;
     });
     const ganttables = computed(() => {
         const g: Ganttable[] = [];
         marcos.value?.forEach((marco) => {
-            g.push(marco);
-            g.push(...marco.tarefas);
+            g.push(new Marco(marco));
+            const tarefasOrderByDataInicio = marco.tarefas.sort((a, b) => {
+                return (
+                    new Date(a.dataInicio).getTime() -
+                    new Date(b.dataInicio).getTime()
+                );
+            });
+            tarefasOrderByDataInicio.forEach((tarefa) => {
+                g.push(new Tarefa(tarefa));
+            });
         });
         return g;
     });
 
     async function buscaDadosGantt(projetoId: string) {
         const { data } = await api.get<any>('/projeto');
-        projeto.value = data;
+        projeto.value = new Projeto(data);
     }
 
     async function criaTarefa(tarefa: Tarefa) {

@@ -4,7 +4,7 @@ import { Usuario } from './usuario';
 export class Tarefa {
     id: string = '';
     nome: string = '';
-    usuariosTarefas: Usuario[] = [];
+    usuariosTarefas: { usuario: Usuario }[] = [];
     descricao: string = '';
     dataInicio: Date = new Date();
     dataFim: Date = new Date();

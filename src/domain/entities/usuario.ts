@@ -7,6 +7,7 @@ export class Usuario {
     senha: string = '';
     situacao: UsuarioSituacao = UsuarioSituacao.ATIVO;
     login: string = '';
+    imageUrl: string = '';
 
     constructor(usuario: Partial<Usuario>) {
         Object.assign(this, usuario);

@@ -9,6 +9,26 @@ import { Periodo } from '../../../../domain/entities/periodo';
 import { getListaDias } from '../../gantt/utils/get-lista-dias';
 
 export function getPeriodoGantt(tarefas: Tarefa[]): Periodo {
+    if (tarefas.length === 0) {
+        return {
+            dias: [],
+            duracaoProjetoExibicao: 0,
+            diasDaUltimaSemana: 0,
+            diasDaPrimeiraSemana: 0,
+            qtdSemanasInteiras: 0,
+        };
+    }
+
+    if (tarefas.length === 1) {
+        return {
+            dias: [tarefas[0].dataInicio],
+            duracaoProjetoExibicao: 1,
+            diasDaUltimaSemana: 0,
+            diasDaPrimeiraSemana: 0,
+            qtdSemanasInteiras: 0,
+        };
+    }
+
     const diasProjeto = getListaDias(
         tarefas[0].dataInicio,
         tarefas[tarefas.length - 1].dataFim,

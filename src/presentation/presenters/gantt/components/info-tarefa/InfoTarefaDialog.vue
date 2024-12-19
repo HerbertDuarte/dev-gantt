@@ -1,12 +1,11 @@
 <script lang="ts" setup>
 import { ref, toRefs } from 'vue';
 import { Tarefa } from '../../../../../domain/entities/tarefa';
-import { responsaveis } from '../../../../../infrastructure/store/fakedb';
 
 const props = defineProps<{
     tarefa: Tarefa
 }>()
-s
+
 const { tarefa } = toRefs(props)
 const editing = ref(false)
 const newComment = ref('')
@@ -15,16 +14,22 @@ const comments = ref<string[]>(["Comentário aleatório 1", "Comentário aleató
 tarefa.value.descricao =  "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Autem doloremque unde eligendi consequatur eius laborum, minus quidem molestiae sapiente aperiam accusantium, recusandae natus distinctio illo, ea laboriosam dignissimos quae itaque"
 
 tarefa.value.checkLists = [
-    {id: 1, nome: "Módulo de usuários", itens: [
-        {descricao: "Teste usecase criação de usuário", concluido: false, id: 1},
-        {descricao: "Teste usecase edição de usuário", concluido: false, id: 2},
-        {descricao: "Teste usecase exclusão de usuário", concluido: true, id: 3},
+    {id: "1", nome: "Módulo de usuários", itens: [
+        {descricao: "Teste usecase criação de usuário", concluido: false, id: "1"},
+        {descricao: "Teste usecase edição de usuário", concluido: false, id: "2"},
+        {descricao: "Teste usecase exclusão de usuário", concluido: true, id: "3"},
     ]},
 
-    {id: 2, nome: "Módulo de tarefas", itens: [
-        {descricao: "Teste de arquivação de tarefas", concluido: false, id: 1},
-        {descricao: "Teste de criação de tarefas", concluido: false, id: 2},
+    {id: "2", nome: "Módulo de tarefas", itens: [
+        {descricao: "Teste de arquivação de tarefas", concluido: false, id: "1"},
+        {descricao: "Teste de criação de tarefas", concluido: false, id: "2"},
     ]},
+]
+
+const responsaveis = [
+    {nome: "Ana", imageUrl: "https://cdn.quasar.dev/img/avatar2.jpg"},
+    {nome: "Maria", imageUrl: "https://cdn.quasar.dev/img/avatar3.jpg"},
+    {nome: "José", imageUrl: "https://cdn.quasar.dev/img/avatar4.jpg"},
 ]
 </script>
 

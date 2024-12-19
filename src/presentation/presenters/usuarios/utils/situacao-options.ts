@@ -8,11 +8,11 @@ export type SituacaoOption = {
 export const situacaoOptions: SituacaoOption[] = [
     {
         label: 'Ativo',
-        value: UsuarioSituacao.Ativo,
+        value: UsuarioSituacao.ATIVO,
     },
     {
         label: 'Inativo',
-        value: UsuarioSituacao.Inativo,
+        value: UsuarioSituacao.INATIVO,
     },
 ];
 

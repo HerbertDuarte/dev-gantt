@@ -8,11 +8,13 @@ import { roundedClass } from '../../../stylesheets/gantt-rounded-class';
 import { isPrimeiroDiaPreenchidoClass } from '../../../stylesheets/primeiro-dia-border-class';
 import { devePreencherMarco } from '../../../stylesheets/deve-preencher';
 
-defineProps<{
+const {ganttable} = defineProps<{
     ganttable: Ganttable,
     ganttables: Ganttable[],
     index: number
 }>();
+
+console.log(ganttable);
 
 </script>
 

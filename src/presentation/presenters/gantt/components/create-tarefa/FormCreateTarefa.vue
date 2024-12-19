@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { fakeMarcos, responsaveis } from '../../../../../infrastructure/store/fakedb';
+import { fakeMarcos } from '../../../../../infrastructure/store/fakedb';
 import DatePickerDialog from './DatePickerDialog.vue';
 import { emptyFieldValidator } from '../../../../../lib/ui/ui-validators/empty-field-validator';
 import { normalizeValidator } from '../../../../../lib/ui/ui-validators/normalize-validator';
@@ -8,9 +8,9 @@ import { CreateTarefaDto } from './types/create-tarefa.dto';
 import { TarefaDates } from './types/tarefa-dates.dto';
 import { Tarefa } from '../../../../../domain/entities/tarefa';
 import { useGanttStore } from '../../../../../infrastructure/store/gantt.store';
-const { criaTarefa } = useGanttStore()
+import { Usuario } from '../../../../../domain/entities/usuario';
+const { criaTarefa, responsaveis } = useGanttStore()
 const marcos = fakeMarcos
-const reponsaveis = responsaveis
 const form = ref<CreateTarefaDto>({
     nome: '',
     marcoId: null,
@@ -39,7 +39,7 @@ async function submit() {
         descricao: form.value.descricao,
         dataInicio: new Date(dates.value.from),
         dataFim: new Date(dates.value.to),
-        responsaveis: form.value.responsaveis
+        usuariosTarefas:form.value.responsaveis
     })
 
     await criaTarefa(tarefa);
@@ -63,7 +63,7 @@ async function submit() {
                     :rules="[emptyFieldValidator]" />
 
                 <q-select option-value="id" option-label="nome" hide-dropdown-icon outlined class="flex-1" dense
-                    v-model="form.responsaveis" multiple :options="reponsaveis" lazy-rules label="Responsaveis"
+                    v-model="form.responsaveis" multiple :options="responsaveis" lazy-rules label="Responsaveis"
                     clear-icon="close" :rules="[emptyFieldValidator]" />
             </div>
 

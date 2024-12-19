@@ -1,4 +1,4 @@
 export enum UsuarioSituacao {
-    Ativo = 1,
-    Inativo = 0,
+    ATIVO = 1,
+    INATIVO = 0,
 }

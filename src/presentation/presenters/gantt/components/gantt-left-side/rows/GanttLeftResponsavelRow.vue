@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { Ganttable, isMarco, isTarefa } from '../../../../../../domain/aggregates/ganttable';
-import { responsaveis } from '../../../../../../infrastructure/store/fakedb';
+import { asTarefa, Ganttable, isMarco, isTarefa } from '../../../../../../domain/aggregates/ganttable';
 import GanttLeftRow from '../GanttLeftRow.vue';
 defineProps<{
     index: number;
@@ -15,10 +14,10 @@ const possuiMaisDeDois = (arr: any[]) => arr.length > 2
 <template>
     <GanttLeftRow :ganttable="ganttable" v-if="isTarefa(ganttable)" :index="index">
         <div class="flex justify-center items-center gap-1 h-gantt-row">
-            <q-avatar class="q-mb-sm size-6 pt-1" v-for="responsavel in reduzParaDois(responsaveis)">
+            <q-avatar class="q-mb-sm size-6 pt-1" v-for="responsavel in reduzParaDois(asTarefa(ganttable).usuariosTarefas)">
                 <img :src="responsavel.imageUrl" />
             </q-avatar>
-            <p v-if="possuiMaisDeDois(responsaveis)">+{{ responsaveis.length - 2 }}</p>
+            <p v-if="possuiMaisDeDois(asTarefa(ganttable).usuariosTarefas)">+{{ asTarefa(ganttable).usuariosTarefas.length - 2 }}</p>
         </div>
     </GanttLeftRow>
 

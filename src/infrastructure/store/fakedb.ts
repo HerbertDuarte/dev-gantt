@@ -218,30 +218,3 @@ export const fakeMarcos: Marco[] = [
         projetoId: 0,
     },
 ];
-
-export const responsaveis = [
-    {
-        imageUrl:
-            'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541',
-        id: 1,
-        nome: 'Celma Duarte Santos',
-    },
-    {
-        imageUrl:
-            'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541',
-        id: 2,
-        nome: 'Maria do Santos',
-    },
-    {
-        imageUrl:
-            'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541',
-        id: 3,
-        nome: 'José Santos dos Santos',
-    },
-    // {
-    //     imageUrl:
-    //         'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541',
-    //     id: 4,
-    //     nome: 'Deusa Maria Nascimento',
-    // },
-];

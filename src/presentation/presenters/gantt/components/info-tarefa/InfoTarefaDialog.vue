@@ -6,7 +6,7 @@ import { responsaveis } from '../../../../../infrastructure/store/fakedb';
 const props = defineProps<{
     tarefa: Tarefa
 }>()
-
+s
 const { tarefa } = toRefs(props)
 const editing = ref(false)
 const newComment = ref('')

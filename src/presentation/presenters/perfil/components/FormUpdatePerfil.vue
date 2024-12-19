@@ -60,7 +60,7 @@ const usuario = ref(props.prevUsuario);
 const formInitialState: FormUpdateUsuarioDto = {
     nome: '',
     email: '',
-    situacao: SituacaoOptionUtil.toOption(UsuarioSituacao.Ativo),
+    situacao: SituacaoOptionUtil.toOption(UsuarioSituacao.ATIVO),
     login: '',
     senhaAntiga: '',
     senhaNova: ''

@@ -15,9 +15,9 @@ export const useGanttStore = defineStore('gantt', () => {
     const responsaveis = computed(() => {
         const r: Usuario[] = [];
         tarefas.value?.forEach((tarefa) => {
-            tarefa.usuariosTarefas.forEach((usuario) => {
-                if (!r.includes(usuario)) {
-                    r.push(usuario);
+            tarefa.usuariosTarefas.forEach((usuariosTarefa) => {
+                if (!r.includes(usuariosTarefa.usuario)) {
+                    r.push(usuariosTarefa.usuario);
                 }
             });
         });

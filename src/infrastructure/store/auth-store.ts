@@ -23,30 +23,13 @@ export const useAuthStore = defineStore('auth', () => {
     const token = ref<string | null>();
     const isAuthenticated = ref(false);
     const isAdmin = ref(false);
-    const loadingProps = {
-        message: 'Entrando em contato com servidor...',
-        delay: 400,
-        spinner: QSpinnerBall,
-        spinnerColor: 'blue-10',
-        spinnerSize: 140,
-    };
 
     async function doLogin(payload: LoginPayload) {
-        Loading.show(loadingProps);
-        try {
-            const response = await api.post<LoginResponse>(
-                '/auth/login',
-                payload,
-            );
-            setToken(response.data.access_token);
-            getUser(response.data.usuarioId);
-            if (response.data.access_token) {
-                notifySuccess({ message: 'Login efetuado com sucesso' });
-            }
-        } catch (error: any) {
-            notifyError({ error });
-        } finally {
-            Loading.hide();
+        const response = await api.post<LoginResponse>('/auth/login', payload);
+        setToken(response.data.access_token);
+        getUser(response.data.usuarioId);
+        if (response.data.access_token) {
+            notifySuccess({ message: 'Login efetuado com sucesso' });
         }
     }
 

@@ -39,11 +39,20 @@
 .cti-card {
     @apply rounded-lg p-6 space-y-4 shadow-sm;
 }
+.md-hidden-flex{
+    @apply hidden md:flex;
+}
+.md-hidden-inline{
+    @apply hidden md:inline;
+}
+.md-hidden-block{
+    @apply hidden md:block;
+}
+
 
 /* Quasar: flex.styl */
 .flex {
     display: flex;
-    flex-wrap: wrap;
 }
 .order-first {
     order: -10000;

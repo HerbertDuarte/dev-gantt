@@ -2,6 +2,8 @@ import { defineStore } from 'pinia';
 import { ref } from 'vue';
 import { useAuthStore } from './auth-store';
 import { useRouter } from 'vue-router';
+import { Loading } from 'quasar';
+import { notifyError } from '../../lib/ui/notify/notify-error';
 
 export const useFormLogin = defineStore('form-login', () => {
     const auth = useAuthStore();
@@ -10,11 +12,17 @@ export const useFormLogin = defineStore('form-login', () => {
     const password = ref('');
 
     async function submit() {
-        await auth.doLogin({
-            username: username.value,
-            password: password.value,
-        });
-        router.push({ name: 'home' });
+        Loading.show();
+        try {
+            await auth.doLogin({
+                username: username.value,
+                password: password.value,
+            });
+            router.push({ name: 'home' });
+        } catch (error) {
+            notifyError({ error });
+        }
+        Loading.hide();
     }
 
     return {

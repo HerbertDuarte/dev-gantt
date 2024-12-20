@@ -4,10 +4,11 @@ import { useFormLogin } from '../../../../infrastructure/store/form-login';
 import { RouterLink } from 'vue-router';
 const form = useFormLogin();
 const { password, username } = storeToRefs(form);
+
 </script>
 
 <template>
-    <form @submit.prevent="form.submit()" class="flex flex-col w-full justify-start gap-4 p-2">
+    <form class="flex flex-col w-full justify-start gap-4 p-2">
         <q-input class="inline flex-1 w-full" dense label="Username *" outlined v-model="username"
             type="text" required />
         <q-input class="inline flex-1 w-full" label="Senha *" outlined dense v-model="password"

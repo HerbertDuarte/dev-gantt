@@ -15,6 +15,9 @@ function getDuration(tarefa: Tarefa) {
 }
 
 function getDurationMarco(tarefas: Tarefa[]) {
+    if (tarefas.length === 0) {
+        return 0
+    }
     const tarefaInicial = tarefas[0]
     const tarefaFinal = tarefas[tarefas.length - 1]
     return differenceInDays(tarefaFinal.dataFim, tarefaInicial.dataInicio) + 1

@@ -21,6 +21,9 @@ export const devePreencherMarco = (
     const marco = asMarco(ganttable);
     const tarefaInicial = marco.tarefas[0];
     const tarefaFinal = marco.tarefas[marco.tarefas.length - 1];
+    if (!tarefaInicial || !tarefaFinal) {
+        return false;
+    }
     return (
         diaDeProjeto >= tarefaInicial.dataInicio &&
         diaDeProjeto <= tarefaFinal.dataFim

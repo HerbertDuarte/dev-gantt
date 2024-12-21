@@ -43,6 +43,7 @@ export const useGanttStore = defineStore('gantt', () => {
     });
     const ganttables = computed(() => {
         const marcosOrderByDataInicio = marcos.value?.sort((a, b) => {
+            if (a.tarefas.length === 0) return -1;
             return (
                 a.tarefas[0].dataInicio.getTime() -
                 b.tarefas[0].dataInicio.getTime()

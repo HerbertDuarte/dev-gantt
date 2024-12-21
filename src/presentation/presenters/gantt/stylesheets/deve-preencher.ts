@@ -1,3 +1,4 @@
+import { startOfDay } from 'date-fns';
 import {
     asMarco,
     asTarefa,
@@ -8,9 +9,12 @@ export const devePreencherTarefa = (
     diaDeProjeto: Date,
     ganttable: Ganttable,
 ) => {
+    const diaNormalizado = startOfDay(diaDeProjeto);
+    const dataInicioNormalizada = startOfDay(asTarefa(ganttable).dataInicio);
+    const dataFimNormalizada = startOfDay(asTarefa(ganttable).dataFim);
     return (
-        diaDeProjeto >= asTarefa(ganttable).dataInicio &&
-        diaDeProjeto <= asTarefa(ganttable).dataFim
+        diaNormalizado >= dataInicioNormalizada &&
+        diaNormalizado <= dataFimNormalizada
     );
 };
 
@@ -24,8 +28,13 @@ export const devePreencherMarco = (
     if (!tarefaInicial || !tarefaFinal) {
         return false;
     }
+
+    const diaNormalizado = startOfDay(diaDeProjeto);
+    const dataInicioNormalizada = startOfDay(tarefaInicial.dataInicio);
+    const dataFimNormalizada = startOfDay(tarefaFinal.dataFim);
+
     return (
-        diaDeProjeto >= tarefaInicial.dataInicio &&
-        diaDeProjeto <= tarefaFinal.dataFim
+        diaNormalizado >= dataInicioNormalizada &&
+        diaNormalizado <= dataFimNormalizada
     );
 };

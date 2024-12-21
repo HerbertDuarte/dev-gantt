@@ -23,7 +23,7 @@ export function getPeriodoGantt(tarefas: Tarefa[]): Periodo {
         return {
             dias: [tarefas[0].dataInicio],
             duracaoProjetoExibicao: 1,
-            diasDaUltimaSemana: 0,
+            diasDaUltimaSemana: 1,
             diasDaPrimeiraSemana: 0,
             qtdSemanasInteiras: 0,
         };

@@ -18,9 +18,9 @@ const {ganttable} = defineProps<{
 
 <template>
     <tr v-if="isMarco(ganttable)" class="p-0">
-        <td :class="`h-gantt-row  p-0 ${index % 2 === 0 ? 'bg-white' : 'bg-slate-100'}`" v-for="diaDeProjeto in
-            getListaDias(asTarefas(ganttables)[0].dataInicio,
-                asTarefas(ganttables)[asTarefas(ganttables).length - 1].dataFim)">
+        <td :class="`h-gantt-row  p-0 ${index % 2 === 0 ? 'bg-white' : 'bg-slate-100'}`" 
+        v-if="asTarefas(ganttables).length > 0"
+        v-for="diaDeProjeto in getListaDias(asTarefas(ganttables)[0].dataInicio, asTarefas(ganttables)[asTarefas(ganttables).length - 1].dataFim)">
             <div v-if="devePreencherMarco(diaDeProjeto, ganttable)"
                 :class="`py-1 h-full ${isPrimeiroDiaPreenchidoClass(diaDeProjeto, ganttable)}`">
                 <div :class="`h-full bg-black/60 ${roundedClass(diaDeProjeto, ganttable)}`" />

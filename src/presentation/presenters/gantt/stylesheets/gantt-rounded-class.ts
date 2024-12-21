@@ -1,5 +1,4 @@
 import { isSameDay } from 'date-fns';
-import { Tarefa } from '../../../../domain/entities/tarefa';
 import {
     asMarco,
     asTarefa,
@@ -12,6 +11,8 @@ export function roundedClass(diaDeProjeto: Date, ganttable: Ganttable) {
     const classList: string[] = [];
     const rClass = 'rounded-r-lg mr-0.5';
     const lClass = 'rounded-l-lg ml-0.5';
+    const lClassMarco = 'rounded-l-sm ml-0.5';
+    const rClassMarco = 'rounded-r-sm mr-0.5';
 
     if (isTarefa(ganttable)) {
         const tarefa = asTarefa(ganttable);
@@ -26,9 +27,9 @@ export function roundedClass(diaDeProjeto: Date, ganttable: Ganttable) {
         const tarefaInicial = marco.tarefas[0];
         const tarefaFinal = marco.tarefas[marco.tarefas.length - 1];
         isSameDay(diaDeProjeto, tarefaInicial.dataInicio) &&
-            classList.push('rounded-l-sm ml-0.5');
+            classList.push(lClassMarco);
         isSameDay(diaDeProjeto, tarefaFinal.dataFim) &&
-            classList.push('rounded-r-sm mr-0.5');
+            classList.push(rClassMarco);
         return classList.join(' ');
     }
 }

@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import { isSameDay, isSaturday, isSunday } from 'date-fns';
-import { asTarefa, asTarefas, Ganttable, isMarco, isTarefa } from '../../../../../../domain/aggregates/ganttable';
-import { Tarefa } from '../../../../../../domain/entities/tarefa';
+import { asTarefa, asTarefas, Ganttable } from '../../../../../../domain/aggregates/ganttable';
 import { getListaDias } from '../../../utils/get-lista-dias';
 import { colorClass } from '../../../stylesheets/color-class';
 import { ganttBorder } from '../../../stylesheets/gantt-border-class';
@@ -13,7 +11,6 @@ defineProps<{
     ganttables: Ganttable[],
     index: number
 }>();
-
 </script>
 
 <template>

@@ -30,7 +30,7 @@ onMounted(async () => {
 });
 </script>
 <template v-if="projeto">
-    <div v-if="tarefas && tarefas.length > 0" class=" main-container ">
+    <div  class=" main-container ">
         <div @scroll="syncScroll('div1')" ref="div1"
             class="rounded-l-lg table-container max-w-fit resize-x hide-scrollbar">
             <GanttLeftTable class="gantt-table " />
@@ -39,9 +39,8 @@ onMounted(async () => {
             <GanttChartTable class="gantt-table" />
         </div>
     </div>
-    <div v-else>
-        <GanttEmptyTable :projeto="(projeto as Projeto)" :marcos="(marcos as Marco[])" />
-    </div>
+
+
 </template>
 <style lang="css" scoped>
 .gantt-table {

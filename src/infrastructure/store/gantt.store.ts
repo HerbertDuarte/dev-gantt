@@ -39,11 +39,14 @@ export const useGanttStore = defineStore('gantt', () => {
                 t.push(new Tarefa(tarefa));
             });
         });
-        return t;
+        return t.sort((a, b) => {
+            return a.dataInicio.getTime() - b.dataInicio.getTime();
+        });
     });
     const ganttables = computed(() => {
         const marcosOrderByDataInicio = marcos.value?.sort((a, b) => {
             if (a.tarefas.length === 0) return -1;
+            if (b.tarefas.length === 0) return 1;
             return (
                 a.tarefas[0].dataInicio.getTime() -
                 b.tarefas[0].dataInicio.getTime()

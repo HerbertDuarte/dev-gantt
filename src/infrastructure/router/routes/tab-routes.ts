@@ -24,24 +24,6 @@ export const tabRoutes: Route[] = [
         },
     },
     {
-        path: '/usuario',
-        component: () =>
-            import(
-                '../../../presentation/presenters/usuarios/components/UsuariosPage.vue'
-            ),
-        meta: {
-            breadcrumb: [
-                {
-                    path: '/usuario',
-                    title: 'Usuários',
-                },
-            ],
-            label: 'Lista de usuários',
-            icon: 'person',
-        },
-        name: 'usuario',
-    },
-    {
         path: '/gantt',
         component: () =>
             import(

@@ -14,8 +14,6 @@ const {ganttable} = defineProps<{
     index: number
 }>();
 
-console.log(ganttable);
-
 </script>
 
 <template>

@@ -2,41 +2,41 @@
 @tailwind components;
 @tailwind utilities;
 
-.cti-input .q-field__inner {
+.ganttly-input .q-field__inner {
     @apply bg-slate-100 rounded px-2;
 }
 
-.cti-input input {
+.ganttly-input input {
     @apply py-2;
 }
-.cti-textarea textarea,
-.cti-textarea div {
+.ganttly-textarea textarea,
+.ganttly-textarea div {
     @apply p-0.5 !important;
 }
 
-.cti-input-bold {
+.ganttly-input-bold {
     @apply bg-slate-200 px-4 rounded;
 }
 
-.cti-button {
+.ganttly-button {
     @apply bg-slate-200 text-slate-700 rounded-full normal-case;
 }
 
-.cti-button-dark {
+.ganttly-button-dark {
     @apply bg-slate-700 text-slate-200 rounded-full normal-case;
 }
 
-.cti-button-ghost {
+.ganttly-button-ghost {
     @apply bg-slate-600/10 text-slate-800 rounded-full normal-case;
 }
 
-.cti-button-ghost:before,
-.cti-button-dark:before,
-.cti-button:before {
+.ganttly-button-ghost:before,
+.ganttly-button-dark:before,
+.ganttly-button:before {
     @apply shadow-none;
 }
 
-.cti-card {
+.ganttly-card {
     @apply rounded-lg p-6 space-y-4 shadow-sm;
 }
 .md-hidden-flex{

@@ -9,7 +9,7 @@ const { user } = storeToRefs(useAuthStore());
 </script>
 
 <template>
-    <q-card class="cti-card flex gap-10 !p-10">
+    <q-card class="ganttly-card flex gap-10 !p-10">
         <div class="flex-1 flex flex-col items-center max-w-[35%]">
             <q-avatar size="128px" class="q-mb-sm">
                 <img

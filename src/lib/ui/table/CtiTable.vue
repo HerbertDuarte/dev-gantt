@@ -1,6 +1,6 @@
 <template>
     <div class="w-full">
-        <q-card class="cti-card">
+        <q-card class="ganttly-card">
             <div class="flex w-full justify-between items-center gap-3">
                 <slot name="header" />
             </div>

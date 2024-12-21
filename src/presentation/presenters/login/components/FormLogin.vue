@@ -16,9 +16,9 @@ const { password, username } = storeToRefs(form);
         <div class="text-right">
             <RouterLink class="hover:underline text-sky-700" to="">Esqueci minha senha</RouterLink>
         </div>
-        <q-btn type="submit" class="cti-button-dark">Entrar</q-btn>
+        <q-btn type="submit" class="ganttly-button-dark">Entrar</q-btn>
         <hr>
-        <q-btn type="submit" class="cti-button-ghost">
+        <q-btn type="submit" class="ganttly-button-ghost">
             <span class="flex items-center gap-2">
                 <img class="size-5" src="images/google-icon.png" alt="google icon">
                 <span>Entrar com o Google</span>

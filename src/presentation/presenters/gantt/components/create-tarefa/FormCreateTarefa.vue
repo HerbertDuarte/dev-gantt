@@ -72,7 +72,7 @@ async function submit() {
 
                 <q-input disable outlined class="flex-1" dense v-model="dates.to" lazy-rules label="Data final" />
 
-                <q-btn icon="calendar_month" @click="openDatePickerComponent" class="cti-button-dark" dense round />
+                <q-btn icon="calendar_month" @click="openDatePickerComponent" class="ganttly-button-dark" dense round />
             </div>
 
 
@@ -83,8 +83,8 @@ async function submit() {
         </div>
 
         <div class="flex items-center justify-end gap-2 pt-6">
-            <q-btn class="cti-button-dark" @click="submit()" size="md" label="Salvar" type="submit" />
-            <q-btn class="cti-button" v-close-popup label="Cancelar" />
+            <q-btn class="ganttly-button-dark" @click="submit()" size="md" label="Salvar" type="submit" />
+            <q-btn class="ganttly-button" v-close-popup label="Cancelar" />
         </div>
     </q-form>
 

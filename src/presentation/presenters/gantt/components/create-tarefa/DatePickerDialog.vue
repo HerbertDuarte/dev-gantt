@@ -25,8 +25,8 @@ function onFinish() {
             <q-date flat v-model="model" range />
 
             <div class="flex justify-end items-center pb-2 px-2 gap-2">
-                <q-btn icon="save" flat dense class="p-2 cti-button-dark" @click="onFinish()" v-close-popup />
-                <q-btn icon="close" flat dense class="p-2 cti-button" v-close-popup />
+                <q-btn icon="save" flat dense class="p-2 ganttly-button-dark" @click="onFinish()" v-close-popup />
+                <q-btn icon="close" flat dense class="p-2 ganttly-button" v-close-popup />
             </div>
         </q-card>
 

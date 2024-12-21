@@ -8,10 +8,6 @@
             <q-input outlined dense v-model="form.email" lazy-rules label="Email" clearable clear-icon="close"
                 :rules="emailRules" />
 
-
-            <q-select hide-dropdown-icon outlined disable dense v-model="form.situacao" :options="situacaoOpt"
-                lazy-rules label="Situação" clear-icon="close" :rules="campoVazioRules" />
-
             <q-input outlined dense v-model="form.login" lazy-rules label="Login" clearable clear-icon="close"
                 :rules="loginRules" />
 
@@ -29,8 +25,8 @@
         </div>
 
         <div class="flex items-center justify-end gap-2 pt-6">
-            <q-btn size="md" label="Salvar" type="submit" class="cti-button-dark" />
-            <q-btn @click="cancelFunc && cancelFunc()" v-close-popup label="Cancelar" class="cti-button" />
+            <q-btn size="md" label="Salvar" type="submit" class="ganttly-button-dark" />
+            <q-btn @click="cancelFunc && cancelFunc()" v-close-popup label="Cancelar" class="ganttly-button" />
         </div>
     </q-form>
 </template>
@@ -45,7 +41,6 @@ import { atualizaPerfil } from '../../../../infrastructure/actions/usuario.actio
 import { useAuthStore } from '../../../../infrastructure/store/auth-store';
 import { notifyError } from '../../../../lib/ui/notify/notify-error';
 import { FormUpdateUsuarioDto } from '../../usuarios/dto/update-usuario-dto';
-import { situacaoOptions, SituacaoOptionUtil } from '../../usuarios/utils/situacao-options';
 
 const auth = useAuthStore()
 const props = defineProps<{
@@ -60,13 +55,11 @@ const usuario = ref(props.prevUsuario);
 const formInitialState: FormUpdateUsuarioDto = {
     nome: '',
     email: '',
-    situacao: SituacaoOptionUtil.toOption(UsuarioSituacao.ATIVO),
     login: '',
     senhaAntiga: '',
     senhaNova: ''
 };
 
-const situacaoOpt = ref(situacaoOptions)
 const form = ref<FormUpdateUsuarioDto>(formInitialState);
 const senhaNovaConfirmacao = ref('');
 
@@ -135,7 +128,6 @@ const confirmarSenhaRules = [
 function preencheCampos(data: Usuario) {
     form.value.nome = data.nome;
     form.value.email = data.email;
-    form.value.situacao = SituacaoOptionUtil.toOption(data.situacao);
     form.value.login = data.login;
 }
 
